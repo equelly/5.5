@@ -3,8 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
+<!-- CSRF Token -->
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
     <title>5.5: <?php echo e(Auth::user() == null ? 'Главная': Auth::user()->name); ?></title>
@@ -33,8 +32,7 @@
   
     <a href="<?php echo e(route('product.index')); ?>" class="nav-link">Продукты</a>
     
-    
-    <a href="#index3.html" id = "demo"class="nav-link">Статьи</a>
+    <a href="<?php echo e(route('articles.index')); ?>" class="nav-link">Статьи</a>
   
   
 </nav>

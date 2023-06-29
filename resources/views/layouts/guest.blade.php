@@ -32,8 +32,7 @@
   
     <a href="{{route('product.index')}}" class="nav-link">Продукты</a>
     
-    
-    <a href="{{route('articles.index')}}" id = "demo"class="nav-link">Статьи</a>
+    <a href="{{route('articles.index')}}" class="nav-link">Статьи</a>
   
   
 </nav>

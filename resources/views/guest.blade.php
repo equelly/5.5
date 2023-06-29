@@ -43,7 +43,7 @@
       </div>
     </swiper-slide>
     <swiper-slide>
-        <p class="title" data-swiper-parallax="-300">Статьи</p>
+    <a href="{{route('articles.index')}}"><p class="title" data-swiper-parallax="-300">Статьи</p></a>
         <p class="subtitle" data-swiper-parallax="-200">В разработке...</p>
         <div class="" data-swiper-parallax="-100">
             <br>

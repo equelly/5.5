@@ -82,6 +82,8 @@ Route::delete('/products/{product}', 'App\Http\Controllers\ProductController@des
 //Route::get('/product/category/{category}', 'App\Http\Controllers\ProductController@showByCategory')->name('admin.product.showByCategory');
 //=========================*/
 
+Route::get('/articles', 'App\Http\Controllers\ArticleController@index')->name('articles.index');
+
 Route::get('/main', 'App\Http\Controllers\MainController@index')->name('main.index');
 Route::get('/about', 'App\Http\Controllers\AboutController@index')->name('about.index');
 Route::get('/contacts', 'App\Http\Controllers\ContactController@index')->name('contacts.index');
