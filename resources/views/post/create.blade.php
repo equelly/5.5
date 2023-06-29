@@ -7,10 +7,10 @@
     <p><h3>всего рецептов:  {{$posts->count()}}</h3></p>
     
     <div>
-    <form action =  "{{route('post.store')}}" method = "post">
+    <form action =  "{{route('post.store')}}" method = "POST">
     <!-- токен для безопасной передачи данных всеми методами кроме get-->    
     @csrf
-  <div class="mb-3">
+  <div class="mb-3 w-25">
     <label for="title" class="form-label">Title</label>
     <input type="text" name = "title" class="form-control" value ="{{old('title')}}"
     id="title" placeholder = "title">
@@ -20,7 +20,7 @@
 
     @enderror
   </div>
-  <div class="mb-3">
+  <div class="mb-3 w-75">
     <label for="content" class="form-label">Content</label>
     <textarea name = "content" class="form-control" 
     id="content" placeholder = "content">{{old('content')}}</textarea>
@@ -29,7 +29,7 @@
 
     @enderror
   </div>
-  <div class="mb-3">
+  <div class="mb-3 w-25">
     <label for="image" class="form-label">Image</label>
     <input type="text" name = "image" class="form-control" value ="{{old('image')}}"
     id="image" placeholder = "image.jpeg">

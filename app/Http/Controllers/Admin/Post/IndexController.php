@@ -12,7 +12,9 @@ use App\Models\Product;
 class IndexController extends Controller
 {
    public function __invoke(FilterRequest $request)
-   {     
+   {   
+      
+  
        //шаблонный подход filter
        $data = $request->validated();
        $filter = app()->make(PostFilter::class, ['queryParams' =>array_filter($data)]);
@@ -21,7 +23,7 @@ class IndexController extends Controller
        //dd($filter);
       $products = Product::all();
       
-       $posts = Post::filter($filter)->paginate(2); 
+       $posts = Post::filter($filter)->paginate(10); 
       //возвращает файл index.blade.php от view->/admin/post 
       return view('admin.post.index', compact('posts', 'products'));
    } 

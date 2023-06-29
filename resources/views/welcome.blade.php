@@ -10,10 +10,15 @@
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
         <!-- Styles -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite('resources/css/app.css')
     </head>
     <body>
-        <div class = "bg-blue-700 text-white"> Hello, Vite!</div>
+        <div id = "app">
+        <example-component>
         
+    </example-component>
+
+        @vite('resources/js/app.js')
+    </div>
     </body>
 </html>

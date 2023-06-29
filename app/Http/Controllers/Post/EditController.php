@@ -15,9 +15,9 @@ class EditController extends BaseController
    {
       $posts = Post::all();
       $products = Product::all();
-      $postProducts = PostProduct::all();
+      $postproducts = PostProduct::all();
       //dd($post);
-      return view('post.edit', compact('postProducts','posts', 'products', 'post'));
+      return view('post.edit', compact('postproducts','posts', 'products', 'post'));
 
    } 
 

@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-<H1>каталог продуктов</H1>
-<H1>добавление продукта в БД</H1>
+<H1>каталог</H1>
+<H1>добавление продукта в католог </H1>
     
     
     <div>
@@ -10,7 +10,7 @@
     <!-- токен для безопасной передачи данных всеми методами кроме get-->    
     @csrf
   <div class="mb-3">
-    <label for="name" class="form-label">название</label>
+    <label for="name" class="form-label">Название</label>
     <input type="text" name = "name" value ="{{old('name')}}" class="form-control" 
     id="title" placeholder = "введите название">
     

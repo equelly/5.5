@@ -29,6 +29,9 @@ class Post extends Model
     public function category(){
     return $this->belongsTo(Category::class, `category_id`,`id`);
 }
+    public function user(){
+        return $this->belongsTo(User::class, `user_id`,`id`);
+    }
 //метод для связывания многие ко многим и определяет сколько post и какие
 //атрубуты связаны с product,т.к. отношения создаем для posts табл. post_product первым аргументом post_id
 

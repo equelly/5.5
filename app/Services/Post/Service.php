@@ -10,7 +10,7 @@ class Service
 public function store($data)
 {
   
-  //выделяем в отдельный массив массив продуктов привязанных к рецупту(post)
+  //выделяем в отдельный массив массив продуктов привязанных к рецeпту(post)
     $products = $data['products'];
   //и удаляем его из массива data, т.к. в валидации нет для записи products(a в БД поля)    
     unset($data['products']);

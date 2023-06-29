@@ -1,6 +1,7 @@
 <?php
 //для многометодных контроллеров
-/*
+
+/* 
 namespace App\Http\Controllers;
 
 
@@ -45,7 +46,7 @@ class PostController extends Controller
         //сохраним результат работы метода create класса Post в переменной $post
         $post = Post::create($data);
     
-    /*этот скрипт пошагового выполнения добавления в БД с маркировкой времени
+    //этот скрипт пошагового выполнения добавления в БД с маркировкой времени
         //циклом по массиву $products==============
         foreach($products as $product){
             //обращаемся к классу PostProduct
@@ -54,11 +55,11 @@ class PostController extends Controller
                 'post_id'=>$post->id,
             ]);
         }
-//==================================================
-        */  
+//================================================== 
+        
         //метод laravel attach позволяет сократить запись, но без маркировки времени 
         //к этому посту($post) через метод класса Post  product привяжет методом attach данные из $products
- /*       $post->product()->attach($products);
+       $post->product()->attach($products);
         return redirect()->route('post.index');
     }
     public function show($id)
@@ -71,8 +72,8 @@ class PostController extends Controller
     public function show(Post $post)
     {
                 dd($post);
-    }*/
- /*   public function  edit(Post $post) 
+    }
+    public function  edit(Post $post) 
     {
         $posts = Post::all();
         $products = Product::all();
@@ -146,4 +147,4 @@ dd($post->content);
 }
 
 }
-*/
+/*

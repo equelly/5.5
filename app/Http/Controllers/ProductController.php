@@ -6,18 +6,27 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Post;
-
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
+
     public function index () {
-        
-        $products = Product::paginate(3);
+     
+        $products = Product::all();
+        //отсортируем массив полученный из БД по алфавиту*******
+        $sorted = DB::table('products')
+                ->orderBy('name', 'asc')
+                ->simplePaginate(20);
+        //************* */
         $categories = Category::all();
+        
         //dd($Products); дампит переменную и останавливает скрипт
         //методом view(): из директории /viev первый аргумент   <file>, второй - метод compact()c  аргументом в виде переменной без $ строка 12
-        return view('product.index', compact('products', 'categories'));
+    return view('product.index', compact('sorted', 'categories', 'products', ));
     } 
+
+
     public function create () {
         $products = Product::all();
         $categories = Category::all();
@@ -33,6 +42,7 @@ class ProductController extends Controller
             'fat'=>'required',
             'prot'=>'required',
             'carb'=>'required',
+            'G'=>'',
             'category_id'=>'required'
         ]);
         
@@ -42,21 +52,28 @@ class ProductController extends Controller
     public function show($id)
     {
         $products = Product::all();
-        //dd($products);
+       
         $product = Product::FindOrFail($id);
-        //dd($product);
+      
         $categories = Category::all();
         return view('product.show', compact('product', 'categories', 'id'));
     }
     public function showByCategory($id)
     {
-        $categories = Category::all();
-        $product_cat = Product::where('category_id',$id)->get();
-        $products = Product::all();
-       $posts = Post::all();
+        //
         
-        $categories = Category::all();
-        return view('admin.product.showByCategory', compact('product_cat', 'categories', 'id', 'posts', 'products'));
+        //$categories = Category::all();
+        
+        $product_cat = Product::where('category_id',$id)->get();
+       //dd($product_cat);
+        
+//$products = Product::all();
+        //$posts = Post::all();
+        //$product = Product::FindOrFail($id);
+        $category = Category::FindOrFail($id);
+        //dd($product->category_id);
+        
+        return view('product.showByCategory', compact('product_cat', 'id', 'category'));
     }
     /*helper класса Product сокращает запись при условии в роуте и функции записи равны {<Product>}=$Product
     public function show(Product $product)
@@ -77,6 +94,7 @@ class ProductController extends Controller
             'fat'=>'',
             'prot'=>'',
             'carb'=>'',
+            'G'=>'',
             'category_id'=>'',
         ]);
         $product->update($data);

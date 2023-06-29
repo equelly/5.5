@@ -12,7 +12,7 @@
    
     </div>
     <div>
-        <a href="{{route('admin.post.index')}}" class="btn btn-primary mt-3">вернуться к постам</a>
+        <a href="{{route('admin.post.index')}}" class="btn btn-primary mt-3">вернуться к рецептам</a>
     </div>
     <!-- директива can принимает арументом способность 'view' и пользователя из auth()->user() из объекта класса AdminPolicy-->
     @can('view', auth()->user())

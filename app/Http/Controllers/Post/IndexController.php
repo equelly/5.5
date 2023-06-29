@@ -9,6 +9,7 @@ use App\Http\Filters\PostFilter;
 use App\Http\Requests\Post\FilterRequest;
 use App\Models\PostProduct;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends BaseController
 {
@@ -43,9 +44,12 @@ class IndexController extends BaseController
          dd($posts);+++++++++++++++++++++++++++*/
       //метод all выведет все записи,а для пагинации применяется метод paginate()
       //$posts = Post::paginate(2);
+      $all_posts = Post::all();
       $products = Product::all();
       $postproducts = PostProduct::all();
-      return view('post.index', compact('posts', 'products', 'postproducts'));
+     
+                        //dd($postproducts);
+      return view('post.index', compact('posts', 'products', 'postproducts', 'all_posts'));
    } 
 
 }

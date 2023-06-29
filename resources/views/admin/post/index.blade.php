@@ -3,7 +3,7 @@
 @section('content')
 <H1>рецепты</H1>
     <div>
-        <p><h3>всего рецептов:  {{$posts->total()}}</h3></p>
+        <p><h3>всего Pецептов:  {{$posts->total()}}</h3></p>
         <div>
             <a href="{{route('admin.post.create')}}" class="btn btn-primary mb-3">добавить новый рецепт</a>
         </div>
@@ -17,5 +17,10 @@
             {{$posts->withQueryString()->links()}}
            
         </div>
+      
+        <div id = "post">
+        <post-component></post-component>
+        </div>
     </div>
+   
 @endsection
