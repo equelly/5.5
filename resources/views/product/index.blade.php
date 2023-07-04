@@ -230,5 +230,5 @@
   <div>
     {{$sorted->links()}}
   </div>
-
   @endsection
+  

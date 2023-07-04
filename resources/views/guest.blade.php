@@ -12,7 +12,7 @@
       style="background-image: url(https://swiperjs.com/demos/images/nature-1.jpg);" data-swiper-parallax="-23%"></div>
 
     <swiper-slide>
-      <a href="{{route('post.index')}}"><p class="title" data-swiper-parallax="-300"> Ricipe</p></a>
+      <a href="{{route('post.index')}}"><p class="title" data-swiper-parallax="-300">Рецепты</p></a>
       <p class="subtitle" data-swiper-parallax="-200">Быстрый расчет хлебных единиц</p>
       <div class="" data-swiper-parallax="-100">
   <br>

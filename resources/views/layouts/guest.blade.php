@@ -166,7 +166,39 @@
             @yield('content')
         </main>
     </div>
-    
+
+<!-- footer section starts  -->
+
+<section style="border-top: 1px solid #73AD21" class="footer">
+
+<div class="box-container">
+  
+    <div class="box">
+        <h3>Ссылки</h3>
+        <a href="/" style= "font-size:1.6em"> <i class="fas fa-arrow-right"></i>на главную</a>
+        <a href="{{route('post.index')}}" style= "font-size:1.6em"> <i class="fas fa-arrow-right"></i>к рецептам</a>
+        <a href="{{route('product.index')}}" style= "font-size:1.6em"> <i class="fas fa-arrow-right"></i>к каталогу продуктов</a>
+        
+    </div>
+
+  
+</section>
+    <!-- /.content-wrapper -->
+    <hr>
+  <footer  class="main-footer">
+    <div style="margin: auto; width: 60%;">
+    <strong>Copyright &copy; 2014-2022 <a href="#">Horns&Hooves</a>.</strong>
+    All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 3.2.0
+      </div>
+    </div>
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>

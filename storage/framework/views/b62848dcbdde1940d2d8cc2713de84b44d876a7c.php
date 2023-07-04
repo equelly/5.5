@@ -288,6 +288,6 @@ unset($__errorArgs, $__bag); ?>
     <?php echo e($sorted->links()); ?>
 
   </div>
-
   <?php $__env->stopSection(); ?>
+  
 <?php echo $__env->make('layouts.guest', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /opt/lampp/htdocs/5.5/resources/views/product/index.blade.php ENDPATH**/ ?>
