@@ -31,6 +31,7 @@ Route::get('/count', 'App\Http\Controllers\CountController')->name('count');
 Route::group(['namespace'=>'App\Http\Controllers\Post'], function(){
 
     Route::get('/posts', 'IndexController')->name('post.index'); //laravel 8* требует полный путь к контроллеру
+    Route::get('/posts/myrecipe', 'ShowMyPostsController')->name('post.myrecipe'); //laravel 8* требует полный путь к контроллеру
     Route::get('/posts/create', 'CreateController')->name('post.create');
     Route::post('/posts', 'StoreController')->name('post.store');
     Route::get('/posts/{post}', 'ShowController')->name('post.show');

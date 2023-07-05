@@ -1,6 +1,6 @@
 @extends('layouts.guest')
 @section('content')
-    <title>Posts</title>
+    <title>Рецепт</title>
 </head>
 <body>
     <H1>Рецепт №{{$post->id}}.</H1>

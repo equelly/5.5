@@ -177,6 +177,7 @@
         <h3>Ссылки</h3>
         <a href="/" style= "font-size:1.6em"> <i class="fas fa-arrow-right"></i>на главную</a>
         <a href="{{route('post.index')}}" style= "font-size:1.6em"> <i class="fas fa-arrow-right"></i>к рецептам</a>
+        <a href="{{route('post.myrecipe')}}" style= "font-size:1.6em"> <i class="fas fa-arrow-right"></i>мои рецепты</a>
         <a href="{{route('product.index')}}" style= "font-size:1.6em"> <i class="fas fa-arrow-right"></i>к каталогу продуктов</a>
         
     </div>

@@ -207,6 +207,7 @@ unset($__errorArgs, $__bag); ?>
         <h3>Ссылки</h3>
         <a href="/" style= "font-size:1.6em"> <i class="fas fa-arrow-right"></i>на главную</a>
         <a href="<?php echo e(route('post.index')); ?>" style= "font-size:1.6em"> <i class="fas fa-arrow-right"></i>к рецептам</a>
+        <a href="<?php echo e(route('post.myrecipe')); ?>" style= "font-size:1.6em"> <i class="fas fa-arrow-right"></i>мои рецепты</a>
         <a href="<?php echo e(route('product.index')); ?>" style= "font-size:1.6em"> <i class="fas fa-arrow-right"></i>к каталогу продуктов</a>
         
     </div>
