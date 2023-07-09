@@ -82,8 +82,17 @@ Route::patch('/products/{product}', 'App\Http\Controllers\ProductController@upda
 Route::delete('/products/{product}', 'App\Http\Controllers\ProductController@destroy')->name('product.delete');
 //Route::get('/product/category/{category}', 'App\Http\Controllers\ProductController@showByCategory')->name('admin.product.showByCategory');
 //=========================*/
-
+//CRUD для статей---------------------------
 Route::get('/articles', 'App\Http\Controllers\ArticleController@index')->name('articles.index');
+Route::get('/articles/create', 'App\Http\Controllers\ArticleController@create')->name('article.create');
+Route::post('/articles', 'App\Http\Controllers\ArticleController@store')->name('article.store');
+Route::get('/article/{article}', 'App\Http\Controllers\ArticleController@show')->name('article.show');
+Route::get('/article/category/{category}', 'App\Http\Controllers\ArticleController@showByCategory')->name('article.showByCategory');
+Route::get('/articles/{article}/edit', 'App\Http\Controllers\ArticleController@edit')->name('article.edit');
+Route::patch('/articles/{article}', 'App\Http\Controllers\ArticleController@update')->name('article.update');
+Route::delete('/articles/{article}', 'App\Http\Controllers\ArticleController@destroy')->name('article.delete');
+//------------------------------------------
+
 
 Route::get('/main', 'App\Http\Controllers\MainController@index')->name('main.index');
 Route::get('/about', 'App\Http\Controllers\AboutController@index')->name('about.index');

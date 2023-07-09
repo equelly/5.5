@@ -2,63 +2,70 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Articles;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\Post;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {
 
     public function index () {
 
-        dd('article');
+        //dd('article');
      
-        $products = Product::all();
-        //отсортируем массив полученный из БД по алфавиту*******
-        $sorted = DB::table('products')
-                ->orderBy('name', 'asc')
-                ->simplePaginate(20);
+        $articles = Articles::paginate(5);
+       
         //************* */
+       
+        foreach($articles as $article){
+        
+        $cut_articles []= array(
+            'id'=>$article['id'],
+            'title'=> $article['title'],
+            'content'=> Str::of($article['content'])->limit(5) 
+        ); 
+        }
+        //dd($articles);
         $categories = Category::all();
         
         //dd($Products); дампит переменную и останавливает скрипт
         //методом view(): из директории /viev первый аргумент   <file>, второй - метод compact()c  аргументом в виде переменной без $ строка 12
-    return view('product.index', compact('sorted', 'categories', 'products', ));
+    return view('article.index', compact('categories', 'articles', 'cut_articles'));
     } 
 
 
     public function create () {
-        $products = Product::all();
+        $articles = Articles::all();
         $categories = Category::all();
         
-        return view('product.create', compact('products','categories'));  
+        return view('article.create', compact('articles','categories'));  
         
         
     }
     public function store()
     {
+      
         $data = request()->validate([
-            'name'=>'required',
-            'fat'=>'required',
-            'prot'=>'required',
-            'carb'=>'required',
-            'G'=>'',
-            'category_id'=>'required'
+            'title'=>'required',
+            'content'=>'required',
+            
         ]);
-        
-        Product::create($data);
-        return redirect()->route('product.index');
+       
+
+        Articles::create($data);
+        return redirect()->route('articles.index');
     }
     public function show($id)
     {
         $products = Product::all();
        
-        $product = Product::FindOrFail($id);
+        $article = Articles::FindOrFail($id);
       
         $categories = Category::all();
-        return view('product.show', compact('product', 'categories', 'id'));
+        return view('article.show', compact('article', 'categories', 'id'));
     }
     public function showByCategory($id)
     {
@@ -82,32 +89,28 @@ class ArticleController extends Controller
     {
                 dd($product);
     }*/
-    public function  edit(Product $product) 
+    public function  edit(Articles $article) 
     {
         $categories = Category::all();
         //dd($categories);
-        return view('product.edit', compact('product','categories'));
+        return view('article.edit', compact('article','categories'));
 
     }
-    public function update (Product $product)
+    public function update (Articles $article)
     {
         $data = request()->validate([
-            'name'=>'string',
-            'fat'=>'',
-            'prot'=>'',
-            'carb'=>'',
-            'G'=>'',
-            'category_id'=>'',
+            'title'=>'string',
+            'content'=>'string',
         ]);
-        $product->update($data);
-        return redirect()->route('product.index', $product->id);
+        $article->update($data);
+        return redirect()->route('articles.index', $article->id);
         
     }
-    public function destroy(Product $product)
+    public function destroy(Articles $article)
     {
         
-        $product->destroy($product->id);
-        return redirect()->route('product.index');
+        $article->destroy($article->id);
+        return redirect()->route('articles.index');
 
     }
     public function delete()

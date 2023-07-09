@@ -1,5 +1,5 @@
 <?php $__env->startSection('content'); ?>
-    <title>Posts</title>
+    <title>Рецепт</title>
 </head>
 <body>
     <H1>Рецепт №<?php echo e($post->id); ?>.</H1>

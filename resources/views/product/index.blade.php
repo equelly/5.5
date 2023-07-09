@@ -6,7 +6,7 @@
   
   <section class="home">
     
-    <h1 class="title"> Категории <span>продуктов</span> </h1>
+  <h1 class="title"> Категории <span>продуктов</span> </h1>
     <!-- Slider main container -->
     <div class="swiper">
       <!-- Additional required wrapper -->
