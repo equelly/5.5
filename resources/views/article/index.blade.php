@@ -8,10 +8,10 @@
     
   <h1 class="title"> Темы <span>статей</span> </h1>
     <!-- Slider main container -->
-    <div class="subswiper">
-      <!-- Additional required wrapper -->
+    <!-- <div class="subswiper">
+      <!-- Additional required wrapper 
       <div class="preview-list swiper-wrapper">
-        <!-- Slides -->
+        
         @foreach($categories as $category)
         
         <div class="preview-item swiper-slide">
@@ -27,7 +27,7 @@
      
    
 
-    </div>
+    </div> -->
 
   </section>
   <section class="home">
