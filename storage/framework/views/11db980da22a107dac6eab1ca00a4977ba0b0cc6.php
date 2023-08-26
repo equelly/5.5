@@ -190,9 +190,9 @@ unset($__errorArgs, $__bag); ?>
 </form>
 
 </header>
-   <div id ="ha"></div>
+   
 
-        <main class="py-4">
+        <main class="">
             <?php echo $__env->yieldContent('content'); ?>
         </main>
     </div>
