@@ -73,6 +73,7 @@
                               inputCart.type = "number";
                               inputCart.name = "massa";
                               inputCart.required = true;
+                              inputCart.autocomplete = "off";
                              
                           
                           bodyCart = document.createElement('div'); 

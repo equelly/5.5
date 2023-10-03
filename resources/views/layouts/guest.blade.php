@@ -384,7 +384,8 @@ function showHint(str) {
                       let jsonHints = JSON.parse(this.responseText);
                      
                       jsonHints = jsonHints.slice(0,10);
-                      document.getElementById('ha').innerHTML= typeof(jsonHints);
+                      
+                      //document.getElementById('ha').innerHTML= typeof(jsonHints);
                       let parentHint = document.querySelector('#productHint');  
                       
                       

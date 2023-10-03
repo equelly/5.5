@@ -126,8 +126,8 @@
         <div id="searchproduct">
             <searchproduct-component></searchproduct-component>
         </div>
-     <h3>Для рецепта 
-      @if(isset($productsCart)) выбрано продуктов-{{count($productsCart)}}
+     <h3> 
+      @if(isset($productsCart))Продуктов-{{count($productsCart)}}
       
       <form action = "" method = "POST">
         <!-- токен для безопасной передачи данных всеми методами кроме get-->    
@@ -189,7 +189,7 @@
           </div>
       </form>
       @else
-         ничего не выбрано</h3>
+      Для рецепта ничего не выбрано</h3>
       @endif
 
 

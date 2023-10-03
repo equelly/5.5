@@ -168,8 +168,8 @@ unset($__errorArgs, $__bag); ?>
         <div id="searchproduct">
             <searchproduct-component></searchproduct-component>
         </div>
-     <h3>Для рецепта 
-      <?php if(isset($productsCart)): ?> выбрано продуктов-<?php echo e(count($productsCart)); ?>
+     <h3> 
+      <?php if(isset($productsCart)): ?>Продуктов-<?php echo e(count($productsCart)); ?>
 
       
       <form action = "" method = "POST">
@@ -246,7 +246,7 @@ unset($__errorArgs, $__bag); ?>
           </div>
       </form>
       <?php else: ?>
-         ничего не выбрано</h3>
+      Для рецепта ничего не выбрано</h3>
       <?php endif; ?>
 
 

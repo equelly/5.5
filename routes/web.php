@@ -97,6 +97,7 @@ Route::delete('/articles/{article}', 'App\Http\Controllers\ArticleController@des
 Route::get('/main', 'App\Http\Controllers\MainController@index')->name('main.index');
 Route::get('/about', 'App\Http\Controllers\AboutController@index')->name('about.index');
 Route::get('/contacts', 'App\Http\Controllers\ContactController@index')->name('contacts.index');
+Route::get('/tg', 'App\Http\Controllers\TGcontroller@index')->name('tg.index');
 
 
 
