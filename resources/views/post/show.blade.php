@@ -5,7 +5,7 @@
 <body>
 <section class="home">
     <div class="container p-5">
-        <H1>Рецепт №{{$post->id}}.</H1>
+        <H1 class="title">Рецепт <span>№{{$post->id}}.</span></H1>
         <p><h3>всего рецептов:  {{$posts->count()}}</h3></p>
         <div class="ml-5">
            
