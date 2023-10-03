@@ -1,11 +1,13 @@
 @extends('layouts.guest')
 @section('content')
-    <title>Рецепт</title>
+    
 </head>
 <body>
-    <H1>Рецепт №{{$post->id}}.</H1>
-    <p><h3>всего рецептов:  {{$posts->count()}}</h3></p>
-    <div class="ml-5">
+<section class="home">
+    <div class="container p-5">
+        <H1>Рецепт №{{$post->id}}.</H1>
+        <p><h3>всего рецептов:  {{$posts->count()}}</h3></p>
+        <div class="ml-5">
            
             <div class="card m-4 w-75">
                 <div class="card-header" style="background: #99eb917d">
@@ -66,9 +68,11 @@
                 </div>
                 @endif
             </div>
+        </div>
          
             
         </div>
+    </section>
   
    
     
