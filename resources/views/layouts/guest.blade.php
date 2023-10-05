@@ -45,12 +45,12 @@
     <div id="cart-btn" class="fas fa-shopping-cart">
     <i  class = "count"></i></div>
     <div id="login-btn" class="fas fa-user"></div>
-       
+    @can('view', auth()->user())   
     <div id="logOut" class="nav-item dropdown">
         <i>
             <a style = "font-size: 1.5rem" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
             {{ Auth::user() == null ? '': Auth::user()->name}}</a>
-
+            
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <a style = "font-size: 1.5rem" class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
@@ -62,9 +62,10 @@
                              @csrf
                         </form>
                         </div>
+                      
         </i>            
-        </div>
     </div>
+    @endcan 
                       
  
 
@@ -365,6 +366,19 @@ function prev(){
     index = (index - 1 + slides.length) % slides.length;
     slides[index].classList.add('active');
 }
+//
+class Human {
+	constructor(y, n){
+		this.year = y;
+		this.name = n;
+	}
+  speak(){
+    console.log(`${this.name} может говорить!`);
+  }
+}
+var human = new Human('one', 2000)
+human.speak();
+//
 function showHint(str) {
   //console.log(str);
   if(searchHint.style.display == 'block'){

@@ -30,19 +30,19 @@
 
     </div>
 
-    <!-- Slider main container -->
-    <div class="subswiper">
-      <!-- Additional required wrapper -->
-      <div class="swiper-wrapper">
-        <!-- Slides -->
-        <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+<!-- Slider main container -->
+    <!-- <div class="subswiper"> -->
+<!-- Additional required wrapper -->
+      <!-- <div class="swiper-wrapper"> -->
+<!-- Slides -->
+        <!-- <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
         <div class="swiper-slide">
           <a href="<?php echo e(route('product.showByCategory', $category->id)); ?> " class="btn-slide" style="background:#94bda3; width: 15rem; height: 7rem;"><?php echo e($category->title); ?> </a>
 
         </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </div>
-    </div>
+    </div>-->
   </section>
   <section class="home mt-1">
    

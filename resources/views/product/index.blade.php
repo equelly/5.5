@@ -31,19 +31,19 @@
 
     </div>
 
-    <!-- Slider main container -->
-    <div class="subswiper">
-      <!-- Additional required wrapper -->
-      <div class="swiper-wrapper">
-        <!-- Slides -->
-        @foreach($categories as $category)
+<!-- Slider main container -->
+    <!-- <div class="subswiper"> -->
+<!-- Additional required wrapper -->
+      <!-- <div class="swiper-wrapper"> -->
+<!-- Slides -->
+        <!-- @foreach($categories as $category) 
         <div class="swiper-slide">
           <a href="{{route('product.showByCategory', $category->id)}} " class="btn-slide" style="background:#94bda3; width: 15rem; height: 7rem;">{{$category->title}} </a>
 
         </div>
         @endforeach
       </div>
-    </div>
+    </div>-->
   </section>
   <section class="home mt-1">
    
