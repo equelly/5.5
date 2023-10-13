@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -45,5 +46,11 @@ class User extends Authenticatable
 //
     public function posts(){
         return $this->hasMany(Post::class);
+    }
+//отношение пользователей и постов многие ко многим через промежуточную табл.'post_user_likes'
+    public function likedPosts()
+    {
+        
+        return $this->belongsToMany(Post::class, 'post_user_likes', 'user_id', 'post_id');
     }
 }

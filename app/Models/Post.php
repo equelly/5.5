@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Http\Filters\FilterInterface;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
@@ -38,4 +39,10 @@ class Post extends Model
     public function product(){
         return $this->belongsToMany(Product::class, 'post_products','post_id','product_id');
     }
+
+    public function likedPosts(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
+    }
+   
 }

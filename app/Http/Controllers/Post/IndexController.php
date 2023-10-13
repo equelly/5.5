@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Post;
 
 
 use App\Models\Post;
+use App\Models\User;
 use App\Http\Controllers\Post\BaseController;
 use App\Http\Filters\PostFilter;
 use App\Http\Requests\Post\FilterRequest;
@@ -47,9 +48,10 @@ class IndexController extends BaseController
       $all_posts = Post::all();
       $products = Product::all();
       $postproducts = PostProduct::all();
+      $userLikedPost = auth()->user()->likedPosts;
      
-                        //dd($postproducts);
-      return view('post.index', compact('posts', 'products', 'postproducts', 'all_posts'));
+
+      return view('post.index', compact('posts', 'products', 'postproducts', 'all_posts', 'userLikedPost'));
    } 
 
 }
