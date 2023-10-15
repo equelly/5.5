@@ -13,6 +13,8 @@ class Post extends Model
 {
     use SoftDeletes;
     use HasFactory;
+
+     protected $withCount = ['likedUsers'];
     //функция для трейта Trait\Filterable(не находит?... прописал в Post)
     public function scopeFilter(Builder $builder, FilterInterface $filter) 
     {
@@ -43,6 +45,11 @@ class Post extends Model
     public function likedPosts(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function likedUsers(){
+        return $this->belongsToMany(User::class, 'post_user_likes', 'post_id', 'user_id');
+
     }
    
 }

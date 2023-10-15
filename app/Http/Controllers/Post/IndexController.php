@@ -48,10 +48,24 @@ class IndexController extends BaseController
       $all_posts = Post::all();
       $products = Product::all();
       $postproducts = PostProduct::all();
-      $userLikedPost = auth()->user()->likedPosts;
-     
 
-      return view('post.index', compact('posts', 'products', 'postproducts', 'all_posts', 'userLikedPost'));
+      //в модели класса Post прописан метод likedUsers(), который отдает коллекцию(массив) соответствующих отношений таблиц в БД, 
+      
+      //а метод laravel "withCount" их посчитает, orderBy('<поля сотировки>', 'DESC')-отсортирует,get()- вернет массив, take()- возмет из массива указанное аргументом кол-во элементов
+
+
+     $likedPosts = Post::withCount('likedUsers')->orderBy('liked_users_count', 'DESC')->get()->take(3);
+     
+     if(auth()->user()){
+      $userLikedPost = auth()->user()->likedPosts;
+      
+      return view('post.index', compact('posts', 'products', 'postproducts', 'all_posts', 'userLikedPost', 'likedPosts'));
+     };
+      
+
+      
+
+      return view('post.index', compact('posts', 'products', 'postproducts', 'all_posts', 'likedPosts'));
    } 
 
 }
