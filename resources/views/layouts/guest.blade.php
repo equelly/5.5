@@ -45,7 +45,7 @@
     <div id="cart-btn" class="fas fa-shopping-cart">
     <i  class = "count"></i></div>
     <div id="login-btn" class="fas fa-user"></div>
-    @can('view', auth()->user())   
+    
     <div id="logOut" class="nav-item dropdown">
         <i>
             <a style = "font-size: 1.5rem" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -65,7 +65,7 @@
                       
         </i>            
     </div>
-    @endcan 
+    
                       
  
 
@@ -178,9 +178,9 @@
         <h3>Ссылки</h3>
         <a href="/" style= "font-size:1.6em"> <i class="fas fa-arrow-right"></i>на главную</a>
         <a href="{{route('post.index')}}" style= "font-size:1.6em"> <i class="fas fa-arrow-right"></i>к рецептам</a>
-        @can('view', auth()->user())
+        @if(auth()->user()->role=='user'|| auth()->user()->role=='admin')
         <a href="{{route('post.myrecipe')}}" style= "font-size:1.6em"> <i class="fas fa-arrow-right"></i>мои рецепты</a>
-        @endcan
+        @endif
         <a href="{{route('product.index')}}" style= "font-size:1.6em"> <i class="fas fa-arrow-right"></i>к каталогу продуктов</a>
         
     </div>

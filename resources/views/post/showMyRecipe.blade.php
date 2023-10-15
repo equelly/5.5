@@ -6,7 +6,7 @@
 <body>
 <section class="home">
 <h1 class="title"> Мои рецепты <span>
-<p><h1>{{$myrecipes->count()}}</h1></p>
+<p><h1>{{$myrecipes->count()==0 ? 'пока нет' : $myrecipes->count()}}</h1></p>
        
                
             

@@ -10,7 +10,9 @@
             <div id = "searchpost" class="container mt-10">
                 <searchpost-component></searchpost-component>
             </div>
-    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view', auth()->user())): ?> 
+            <?php if(auth()->user()->role=='user'|| auth()->user()->role=='admin'): ?>
+    
+    
             <h1 class="title">Любимые <span>рецепты(<?php echo e($userLikedPost->count()); ?>)</span></h1>
             <div class="ml-5">
                 <?php $__currentLoopData = $userLikedPost; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
