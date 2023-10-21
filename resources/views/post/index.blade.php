@@ -11,12 +11,13 @@
             <div id = "searchpost" class="container mt-10">
                 <searchpost-component></searchpost-component>
             </div>
-            @if(auth()->user()->role=='user'|| auth()->user()->role=='admin')
+            @if(auth()->user() && (auth()->user()->role=='user'|| auth()->user()->role=='admin'))
     
     
             <h1 class="title">Любимые <span>рецепты({{$userLikedPost->count()}})</span></h1>
             <div class="ml-5">
                 @foreach($userLikedPost as $post)
+               
                     <div class="card m-4 w-75">
                     <div class="card-header " style="background: #99eb917d">
                    

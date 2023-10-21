@@ -68,10 +68,52 @@
                 </div>
                 @endif
             </div>
-        </div>
-         
+        
+            <div class="">
             
+                
+            @if(auth()->user() && (auth()->user()->role=='user'|| auth()->user()->role=='admin'))              
+                <div class="m-5">
+                <form action="{{route('post.comment.store', $post->id)}}" method="POST"> 
+                    @csrf
+                    <label for="content" class="form-label"><i class='far fa-edit' style='font-size:24px;color:#63c34e'></i>оставить комментарий</label>
+                    <textarea name = "message" class="form-control" rows="4" cols="50" style="font-size: 1.5rem;"
+                    id="content" placeholder = "текст комментария..." required>{{old('content')}}</textarea>
+                    @error('content')
+                    <p class="text-danger">{{$message}}</p>
+
+                    @enderror
+                    <button type="submit" class="btn btn-primary m-4">добавить</button>
+                </form>    
+                </div>
+            @endif
+            </div>   
+        </div>  
+    </div>
+    <H1 class="title">Комментарии <span>({{$comments->count()}})</span></H1>
+    @foreach($comments as $comment)
+    
+        <div class="toast m-4" style="display:block; font-size:1.1em; width: 90%" false role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+              
+                <strong class="me-auto">{{$comment->name}} </strong>
+                <small class="text-body-secondary">{{$comment->created_at}}</small>
+                @if(auth()->user() && (auth()->user()->name == $comment->name))
+                
+                <form action="{{route('post.comment.delete', [$post->id, $comment->id])}}" method="POST"> 
+                    @csrf
+                    @method('DELETE')
+                <button type="submit" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </form>
+                @endif
+            </div>
+            <div class="toast-body">
+            {{$comment->message}}
+            </div>
         </div>
+    @endforeach
+       
+
     </section>
   
    

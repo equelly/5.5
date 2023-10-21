@@ -10,7 +10,7 @@ use App\Http\Filters\PostFilter;
 use App\Http\Requests\Post\FilterRequest;
 use App\Models\PostProduct;
 use App\Models\Product;
-use Illuminate\Support\Facades\DB;
+
 
 class IndexController extends BaseController
 {
@@ -54,7 +54,7 @@ class IndexController extends BaseController
       //а метод laravel "withCount" их посчитает, orderBy('<поля сотировки>', 'DESC')-отсортирует,get()- вернет массив, take()- возмет из массива указанное аргументом кол-во элементов
 
 
-     $likedPosts = Post::withCount('likedUsers')->orderBy('liked_users_count', 'DESC')->get()->take(3);
+     $likedPosts = Post::withCount('likedUsers')->orderBy('liked_users_count', 'DESC')->get()->take(10);
      
      if(auth()->user()){
       $userLikedPost = auth()->user()->likedPosts;

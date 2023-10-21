@@ -43,6 +43,12 @@ Route::group(['namespace'=>'App\Http\Controllers\Post'], function(){//laravel 8*
             Route::post('/', 'StoreController')->name('post.like.store');
 
         });
+    //группа роутов для пространства имен Post, комментарии
+    Route::group(['namespace'=> 'Comment', 'prefix'=>'{post}/comments'], function(){
+        Route::post('/', 'StoreController')->name('post.comment.store');
+        Route::delete('/{comment}', 'DeleteController')->name('post.comment.delete');
+
+    });
  
 
 });
