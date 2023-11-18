@@ -17,15 +17,15 @@
             <div class="ml-5">
                 <?php $__currentLoopData = $userLikedPost; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                
-                    <div class="card m-4 w-75">
+                    <div class="card">
                     <div class="card-header " style="background: #99eb917d">
                    
                         <div class="callout mb-1 w-90 d-flex justify-content-between">
                             <div><a href ="<?php echo e(route('post.show', $post->id)); ?> "><h3 class="fw-light text-muted"><?php echo e($post->title); ?></h3></a></div>
-                                <div  style="color:#63c34e;">
+                              <div  style="color:#63c34e;">
                                 <form action="<?php echo e(route('post.like.store', $post->id)); ?>" method="POST">
                                     <?php echo csrf_field(); ?>
-                                    <span><?php echo e(($post->liked_users_count) > 0 ? "понравилось_". $post->liked_users_count : ''); ?></span>
+                                    <span><?php echo e(($post->liked_users_count) > 0 ? $post->liked_users_count : ''); ?></span>
                                     <button type="submit" class="border-0 bg-transparent">
                                         <?php if(auth()->guard()->check()): ?>
                                        
@@ -37,7 +37,7 @@
                                 <?php endif; ?>
                                     </button>
                                 </form>
-                                </div>
+                            </div>
                         </div>
                   
                     </div>
@@ -51,7 +51,7 @@
                             <?php if($postproduct['product_id'] == $product->id ): ?>
                             <a href ="<?php echo e(route('product.show', $product->id)); ?> "> 
         
-                            <div class="btn btn-outline-primary m-2 p-1" style = "width: auto;font-size: 1.2rem"><?php echo e($product->name); ?>/<?php echo e($postproduct['massa']); ?>гр.</div>
+                            <div class="btn btn-outline-primary m-2 p-1" style = "width: auto;font-size: 1.5rem"><?php echo e($product->name); ?>/<?php echo e($postproduct['massa']); ?>гр.</div>
                             </a>
                             <?php endif; ?>
                            
@@ -60,7 +60,12 @@
                         <?php endif; ?>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <hr>
-                <p class="text-muted">рецепт: <?php echo e($post->content); ?></p>
+                    <?php $__currentLoopData = $cut_posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cut_post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php if($post->id == $cut_post['id']): ?>
+                        <p class="text-muted">Способ приготовления: <?php echo e($cut_post['content']); ?></p>
+                        <a href ="<?php echo e(route('post.show', $post['id'])); ?> " style ="color:#63c34e">подробнее...</a>
+                        <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -68,9 +73,9 @@
         </div>
     <?php endif; ?> 
     <h1 class="title">Топ <span>рецептов</span></h1>
-            <div class="ml-5">
+            <div class="m-1">
                 <?php $__currentLoopData = $likedPosts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="card m-4 w-75">
+                    <div class="card">
                     <div class="card-header " style="background: #99eb917d">
                    
                         <div class="callout mb-1 w-90 d-flex justify-content-between">
@@ -113,7 +118,12 @@
                         <?php endif; ?>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <hr>
-                <p class="text-muted">рецепт: <?php echo e($post->content); ?></p>
+                    <?php $__currentLoopData = $cut_posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cut_post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php if($post->id == $cut_post['id']): ?>
+                        <p class="text-muted">Способ приготовления: <?php echo e($cut_post['content']); ?></p>
+                        <a href ="<?php echo e(route('post.show', $post['id'])); ?> " style ="color:#63c34e">подробнее...</a>
+                        <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -125,7 +135,7 @@
 
         <div class="ml-5">
             <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <div class="card m-4 w-75">
+            <div class="card">
                 <div class="card-header " style="background: #99eb917d">
                    
                         <div class="callout mb-1 w-90 d-flex justify-content-between">
@@ -133,7 +143,7 @@
                             <div style="color:#63c34e;">
                                 <form action="<?php echo e(route('post.like.store', $post->id)); ?>" method="POST">
                                     <?php echo csrf_field(); ?>
-                                    <span><?php echo e(($post->liked_users_count) > 0 ? "понравилось_". $post->liked_users_count : ''); ?></span>
+                                    <span><?php echo e(($post->liked_users_count) > 0 ? $post->liked_users_count : ''); ?></span>
                                     <button type="submit" class="border-0 bg-transparent">
                                         <?php if(auth()->guard()->check()): ?>
                                         <?php if(auth()->user()->likedPosts->contains($post->id)): ?>
@@ -170,7 +180,12 @@
                         <?php endif; ?>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <hr>
-                <p class="text-muted">рецепт: <?php echo e($post->content); ?></p>
+                    <?php $__currentLoopData = $cut_posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cut_post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php if($post->id == $cut_post['id']): ?>
+                        <p class="text-muted">Способ приготовления: <?php echo e($cut_post['content']); ?></p>
+                        <a href ="<?php echo e(route('post.show', $post['id'])); ?> " style ="color:#63c34e">подробнее...</a>
+                        <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
             </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

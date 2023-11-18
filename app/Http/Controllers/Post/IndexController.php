@@ -10,6 +10,7 @@ use App\Http\Filters\PostFilter;
 use App\Http\Requests\Post\FilterRequest;
 use App\Models\PostProduct;
 use App\Models\Product;
+use Illuminate\Support\Str;
 
 
 class IndexController extends BaseController
@@ -45,6 +46,17 @@ class IndexController extends BaseController
          dd($posts);+++++++++++++++++++++++++++*/
       //метод all выведет все записи,а для пагинации применяется метод paginate()
       //$posts = Post::paginate(2);
+
+      foreach($posts as $post){
+        
+         $cut_posts []= array(
+             'id'=>$post['id'],
+             'title'=> $post['title'],
+             'content'=> Str::of($post['content'])->limit(15) 
+         ); 
+         }
+
+
       $all_posts = Post::all();
       $products = Product::all();
       $postproducts = PostProduct::all();
@@ -59,13 +71,13 @@ class IndexController extends BaseController
      if(auth()->user()){
       $userLikedPost = auth()->user()->likedPosts;
       
-      return view('post.index', compact('posts', 'products', 'postproducts', 'all_posts', 'userLikedPost', 'likedPosts'));
+      return view('post.index', compact('posts', 'products', 'postproducts', 'all_posts', 'userLikedPost', 'likedPosts', 'cut_posts'));
      };
       
 
       
 
-      return view('post.index', compact('posts', 'products', 'postproducts', 'all_posts', 'likedPosts'));
+      return view('post.index', compact('posts', 'products', 'postproducts', 'all_posts', 'likedPosts', 'cut_posts'));
    } 
 
 }

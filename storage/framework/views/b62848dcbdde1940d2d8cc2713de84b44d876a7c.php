@@ -58,7 +58,7 @@
         <div class="w-90">
           <label for="name" class="form-label">наименование</label>
           <input type="text" name = "name" value ="<?php echo e(old('name')); ?>" class="form-control" 
-          id="title" placeholder = "введите название" required style="font-size: 2rem;">
+          id="title" placeholder = "введите название" required style="font-size: 2rem;" autocomplete="off">
           
           <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -75,7 +75,7 @@ unset($__errorArgs, $__bag); ?>
         <div class="w-50">
           <label for="fat" class="form-label">жиры</label>
           <input type="text" name = "fat" class="form-control" value ="<?php echo e(old('fat')); ?>"
-          id="fat" placeholder = "введите..." required style="font-size: 2rem;">
+          id="fat" placeholder = "введите..." required style="font-size: 2rem;" autocomplete="off">
         </div>
         <?php $__errorArgs = ['fat'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -91,7 +91,7 @@ unset($__errorArgs, $__bag); ?>
         <div class="w-50">
           <label for="carb" class="form-label">углеводы</label>
           <input type="text" name = "carb" class="form-control" value ="<?php echo e(old('carb')); ?>"
-          id="carb" placeholder = "введите..." required style="font-size: 2rem;">
+          id="carb" placeholder = "введите..." required style="font-size: 2rem;" autocomplete="off">
         </div>
         <?php $__errorArgs = ['carb'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -107,7 +107,7 @@ unset($__errorArgs, $__bag); ?>
         <div class="w-50">
           <label for="prot" class="form-label">белки</label>
           <input type="text" name = "prot" class="form-control" value ="<?php echo e(old('prot')); ?>"
-          placeholder = "введите..." required style="font-size: 2rem;">
+          placeholder = "введите..." required style="font-size: 2rem;" autocomplete="off">
         </div>
         <?php $__errorArgs = ['prot'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -123,7 +123,7 @@ unset($__errorArgs, $__bag); ?>
           <div class="w-50">
           <label for="fat" class="form-label">G-индекс</label>
           <input type="text" name = "G" class="form-control" value ="<?php echo e(old('G')); ?>"
-          id="G" placeholder = "введите..." style="font-size: 2rem;">
+          id="G" placeholder = "введите..." style="font-size: 2rem;" autocomplete="off"  required>
         </div>
         <?php $__errorArgs = ['G'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -164,7 +164,7 @@ unset($__errorArgs, $__bag); ?>
     </div>    
     <?php endif; ?>
     <div class="col">
-    <h2>Найдите продукты для Вашего рецепта в поле поиска <br>или из каталога</h2>
+    <h2>Найдите продукты для Вашего рецепта в поле поиска или из каталога</h2>
         <div id="searchproduct">
             <searchproduct-component></searchproduct-component>
         </div>
@@ -260,7 +260,7 @@ unset($__errorArgs, $__bag); ?>
           <!-- ссылка <a href ="<?php echo e(route('product.show', $product->id)); ?> " style = "color: green"></a>-->
           <form action="/session" method="POST">
           <?php echo csrf_field(); ?>
-          <H1><?php echo e($product->name); ?>  <span style="font-size: 1.2rem;"> масса-</span>
+          <H1><?php echo e($product->name); ?>  <span style="font-size: 1.2rem;"> <br>масса-</span>
            
               <input class = "w-25 ml-6" type="text" name = "massa" placeholder="грамм" required>
           </H1> 

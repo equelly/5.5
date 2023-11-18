@@ -25,7 +25,7 @@ class ArticleController extends Controller
         $cut_articles []= array(
             'id'=>$article['id'],
             'title'=> $article['title'],
-            'content'=> Str::of($article['content'])->limit(5) 
+            'content'=> Str::of($article['content'])->limit(25) 
         ); 
         }
         //dd($articles);

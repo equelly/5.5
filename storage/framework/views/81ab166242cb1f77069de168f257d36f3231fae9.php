@@ -3,12 +3,12 @@
 </head>
 <body>
 <section class="home">
-    <div class="container p-5">
-        <H1 class="title">Рецепт <span>№<?php echo e($post->id); ?>.</span></H1>
+    <div class="container p-1">
+        <H1 class="title">Рецепт:  <span> <?php echo e($post->title); ?>.</span></H1>
         <p><h3>всего рецептов:  <?php echo e($posts->count()); ?></h3></p>
-        <div class="ml-5">
+        <div class="m-1">
            
-            <div class="card m-4 w-75">
+            <div class="card" style="width:100%">
                 <div class="card-header" style="background: #99eb917d">
 
                     <div class="callout mb-1 w-90"><a href ="<?php echo e(route('post.show', $post->id)); ?> ">

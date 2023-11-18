@@ -37,7 +37,7 @@
     @endif
       
    
-        <div class="">
+        <div class="card">
             @foreach($cut_articles as $article)
             <div class="card m-4" style="width: 90%;" >
               <div class="card-header" style="background: #99eb917d">

@@ -18,9 +18,26 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['namespace'=>'App\Http\Controllers\Post'], function(){
-    Route::post('/posts', 'StoreController');
+
+//для jwt-токена
+Route::group([
+    'namespace' => 'App\Http\Controllers',
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
+
 });
+Route::group(['namespace'=>'App\Http\Controllers\Post', 'middleware' => 'jwt.auth'], function(){
+    Route::get('/posts', 'IndexController');
+    //Route::post('/posts', 'StoreController');
+});
+
 /*
 Route::group(['namespace'=>'App\Http\Controllers\Product'], function(){
     Route::post('/products', 'StoreController');

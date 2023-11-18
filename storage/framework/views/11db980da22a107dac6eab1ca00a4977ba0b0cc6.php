@@ -25,9 +25,9 @@
 
 <a href="/" class="logo"><i class='fab fa-nutritionix'>5.5</i></a>
 
-<nav class="navbar">
+<nav class="navbar ml-5 w-90 callout d-flex justify-content-around">
 
-   
+  
     <a href="<?php echo e(route('post.index')); ?>" class="nav-link">Рецепты</a>
   
     <a href="<?php echo e(route('product.index')); ?>" class="nav-link">Продукты</a>
@@ -37,37 +37,34 @@
   
 </nav>
 
-<div class="icons ml-1">
+<div class="icons ml-5 w-50">
+  <div class="callout ml-3  d-flex justify-content-around">
     <div id="menu-btn" class="fas fa-bars"></div>
 
     <div id="search-btn" class="fas fa-search"></div>
 
-    <div id="cart-btn" class="fas fa-shopping-cart">
-    <i  class = "count"></i></div>
-    <div id="login-btn" class="fas fa-user"></div>
-    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view', auth()->user())): ?>
-    <div id="logOut" class="nav-item dropdown">
-        <i>
-            <a style = "font-size: 1.5rem" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-            <?php echo e(Auth::user() == null ? '': Auth::user()->name); ?></a>
-            
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <a style = "font-size: 1.5rem" class="dropdown-item" href="<?php echo e(route('logout')); ?>"
-                        onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
-                            <?php echo e(__('Выход')); ?>
-
-                        </a>
-
-                        <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" class="d-none">
-                             <?php echo csrf_field(); ?>
-                        </form>
-                        </div>
-                      
-        </i>            
-    </div>
-    <?php endif; ?>
+    <div id="cart-btn" class="fas fa-shopping-cart"><i  class = "count"></i></div>
     
+    <div id="login-btn" class="fas fa-user"></div>
+      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view', auth()->user())): ?>
+        <div id="logOut" class="nav-item dropdown">
+          <i><a style = "font-size: 1.5rem" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+              <?php echo e(Auth::user() == null ? '': Auth::user()->name); ?></a>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <a style = "font-size: 1.5rem" class="dropdown-item" href="<?php echo e(route('logout')); ?>"
+                  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                              <?php echo e(__('Выход')); ?>
+
+                </a>
+
+                <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" class="d-none">
+                  <?php echo csrf_field(); ?>
+                </form>
+              </div>
+          </i>            
+        </div>
+      <?php endif; ?>
+    </div>
                       
  
 
@@ -101,9 +98,11 @@
   <div class="card-body">
     <div id="empty"></div>
     <p style="font-size:1.5rem">Итого: XE(хлебных ед.)
-    <input id="sum" type="number" placeholder='XE'value="" style="width: 10rem; float: right; border-bottom: 2px solid #bdf5b0"></p>
-    <p style="font-size:1.5rem"> XE на 100гр.-
-    <input id="percent" type="text" placeholder='XE/100гр.'value="" style="width: 10rem; float: right; border-bottom: 2px solid #bdf5b0"></p>
+    <input id="sum" type="number" placeholder='XE'value="" style="width: 10rem; float: right; border-bottom: 2px solid #bdf5b0"readonly></p>
+    <p style="font-size:1.5rem"> XE на 100гр -
+    <input id="percent" type="number" placeholder='XE/100гр.'value="" style="width: 10rem; float: right; border-bottom: 2px solid #bdf5b0"readonly></p>
+    <p style="font-size:1.5rem"> 1 XE- гр
+    <input id="XE" type="number" placeholder='1XE=...гр'value="" style="width: 10rem; float: right; border-bottom: 2px solid #bdf5b0" readonly></p>
   
   </div>
   <div class="card-body">
@@ -155,7 +154,10 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="password" required autocomplete="current-password">
-            
+            <div class="remember">
+              <input type="checkbox" id="show" onclick="showPassword()">
+              <label for="show" id="check">показать пароль</label>
+             </div>
                 
 
             <?php $__errorArgs = ['password'];
@@ -241,7 +243,7 @@ unset($__errorArgs, $__bag); ?>
 <script>
     const swiper = new Swiper('.swiper', {
   // Optional parameters
-  slidesPerView: 3,
+  slidesPerView: 2,
   hashNavigation:true,
   // Responsive breakpoints
   //watchSlidesVisibility: true,
@@ -321,6 +323,8 @@ document.querySelector('#search-btn').onclick = () =>{
 let ShopCart = document.querySelector('.shopping-cart');
 
     document.querySelector('#cart-btn').onclick = () =>{
+            searchForm.classList.remove('active');
+            dropdownContent.style.display = ('none');
             //... выведем наименование продуктов
             let firstListCount  = document.querySelector('#listCount');
               //удалим предыдущие записи для исключения добавления(дублирования)
@@ -339,7 +343,7 @@ let ShopCart = document.querySelector('.shopping-cart');
               
               let il = document.createElement('il');
               il.className = "list-group-item";
-              il.innerHTML =  localCart[i].name +"("+localCart[i].carb+"угл.)"+ "<input id='input' class='cls' type='' placeholder='кол-во грамм'  style = 'width: 10rem; float: right; border-bottom: 2px solid #bdf5b0'; >";
+              il.innerHTML =  localCart[i].name + "<input id='input' class='cls' type='' placeholder='кол-во грамм'  style = 'width: 10rem; float: right; border-bottom: 2px solid #bdf5b0'; >";
               firstListCount.appendChild(il);
             }
             // для расчета хлебных единиц находим input для каждого элемента по имени класса и при вводе(событие 'keyup') вызывается функция для расчета ХЕ func
@@ -416,9 +420,25 @@ function showHint(str) {
                     if (this.readyState == 4 && this.status == 200) {
                       let jsonHints = JSON.parse(this.responseText);
                      
+                     //****************** */
+                     //выбрать из объекта элементы  вложенного массива с ключем 'result'
+                    //   let elements = [];
+                    //  for (const key in jsonHints) {
+                    //   if (key == 'result') {
+                        
+                    //     elements = jsonHints[key];
+                    //     for (let index = 0; index < elements.length; index++) {
+                    //       const element = elements[index]['category_description'];
+                    //       console.log(element);
+                    //     }
+                        
+                    //   }
+                    //  }
+                     //****************** */
+                      //console.log(jsonHints);
                       jsonHints = jsonHints.slice(0,10);
                       
-                      //document.getElementById('ha').innerHTML= typeof(jsonHints);
+                      
                       let parentHint = document.querySelector('#productHint');  
                       
                       
@@ -433,6 +453,11 @@ function showHint(str) {
                         };  
                       }
                 };
+//************************ */
+                // xmlhttp.open('GET', 'https://food-nutrional-data.p.rapidapi.com/'+ str);
+                // xmlhttp.setRequestHeader('X-RapidAPI-Key', '13fbb0e26dmshf03c479a9c01e8fp183dbbjsn6db5e8fdf38b');
+                // xmlhttp.setRequestHeader('X-RapidAPI-Host', 'food-nutrional-data.p.rapidapi.com');
+//************************ */
                 xmlhttp.open("GET", "/productHints?q=" + str, true);
                 xmlhttp.send();
             }
@@ -488,11 +513,17 @@ function  addToCart(id, name, value){
           
             summass += +elemInput[i].value;
           }
-          let  sumElem = document.getElementById('sum');
-          sumElem.value = Math.floor(sum * 100) / 100 ;
+          
           let s = sum/summass*100;
+          let  sumElem = document.getElementById('sum');
           let percentElement = document.getElementById('percent');
+          let XE = document.getElementById('XE');
+          sumElem.value = Math.floor(sum * 100) / 100 ;
+
           percentElement.value = Math.floor(s * 10) / 10;
+          
+          XE.value = Math.floor(100/s)/100*100;
+
          
         } 
 
@@ -500,7 +531,7 @@ function  addToCart(id, name, value){
 	
     const element = event.target;                 //событие event аргумент функции, которая присваивает const element результат метода target
 	 
-      if (element.className ==="hint p-2"){            //если элемент имеет className ==="alert"
+      if (element.className ==="hint p-2"){            //если элемент имеет className ==="hint p-2"
         
           //функция добавляет в localStorage элемент с событием 'click'
           addToCart(element.id, element.name, element.value);
@@ -560,7 +591,18 @@ document.getElementById("name").innerHTML = x;
    element.remove();                              
    })
   */
-    
+  function showPassword() {
+    let x = document.getElementById("password");
+    let show = document.getElementById("check");
+    if (x.type === "password") {
+        x.type = "text";
+        show.innerHTML = 'скрыть пароль';
+        
+    } else {
+        x.type = "password";
+        show.innerHTML = 'показать пароль';
+    }
+} 
 
 </script>
 </html>

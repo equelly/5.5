@@ -13,7 +13,7 @@ class IndexController extends Controller
      */
     public function __invoke()
     {
-      
+      //dd(4444444);
        return view('guest');
     }
 

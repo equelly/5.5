@@ -4,12 +4,12 @@
 </head>
 <body>
 <section class="home">
-    <div class="container p-5">
-        <H1 class="title">Рецепт <span>№{{$post->id}}.</span></H1>
+    <div class="container p-1">
+        <H1 class="title">Рецепт:  <span> {{$post->title}}.</span></H1>
         <p><h3>всего рецептов:  {{$posts->count()}}</h3></p>
-        <div class="ml-5">
+        <div class="m-1">
            
-            <div class="card m-4 w-75">
+            <div class="card" style="width:100%">
                 <div class="card-header" style="background: #99eb917d">
 
                     <div class="callout mb-1 w-90"><a href ="{{route('post.show', $post->id)}} ">
@@ -44,7 +44,7 @@
                 </h3> 
                 
                     <hr>
-                <p class="text-muted">рецепт: {{$post->content}}</p>
+                <p class="text-muted">Способ приготовления: {{$post->content}}</p>
                 </div>
                 <hr>
                 <div>
@@ -59,7 +59,7 @@
                 
                 <div>
                     <!--оборачиваем в форму т.к. в html нет метода delete -->
-                    <form action="{{route('post.delete', $post->id)}}" method="post">
+                    <form action="{{route('post.delete', $post->id)}}" method="POST">
                         @csrf
                         @method('delete')
                         <input type="submit" value = "удалить!" class="btn btn-primary m-3" style="width: 95%;">
@@ -69,11 +69,11 @@
                 @endif
             </div>
         
-            <div class="">
+            <div  class="mt-5">
             
                 
             @if(auth()->user() && (auth()->user()->role=='user'|| auth()->user()->role=='admin'))              
-                <div class="m-5">
+                <div>
                 <form action="{{route('post.comment.store', $post->id)}}" method="POST"> 
                     @csrf
                     <label for="content" class="form-label"><i class='far fa-edit' style='font-size:24px;color:#63c34e'></i>оставить комментарий</label>

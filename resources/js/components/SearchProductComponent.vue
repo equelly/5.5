@@ -69,6 +69,8 @@
                               titleCart.innerHTML= jsonHints[i].name;
                           inputCart = document.createElement('input');
                               
+                              inputCart.placeholder = "кол-во грамм";
+                              inputCart.min = "1";
                               inputCart.className = "w-50 m-3";
                               inputCart.type = "number";
                               inputCart.name = "massa";

@@ -6,7 +6,7 @@
 
 
 <section class="home">
-<swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="mySwiper"
+  <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="mySwiper"
     speed="1000" parallax="true" pagination="true" pagination-clickable="true" navigation="true">
     <div slot="container-start" class="parallax-bg"
       style="background-image: url(https://swiperjs.com/demos/images/nature-1.jpg);" data-swiper-parallax="-23%"></div>
@@ -54,6 +54,6 @@
     </swiper-slide>
   </swiper-container>
 </section>
-</body>
+
 @endsection
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>

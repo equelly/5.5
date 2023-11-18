@@ -59,7 +59,7 @@
         <div class="w-90">
           <label for="name" class="form-label">наименование</label>
           <input type="text" name = "name" value ="{{old('name')}}" class="form-control" 
-          id="title" placeholder = "введите название" required style="font-size: 2rem;">
+          id="title" placeholder = "введите название" required style="font-size: 2rem;" autocomplete="off">
           
           @error('name')
             <p class="text-danger">{{$message}}</p>
@@ -69,7 +69,7 @@
         <div class="w-50">
           <label for="fat" class="form-label">жиры</label>
           <input type="text" name = "fat" class="form-control" value ="{{old('fat')}}"
-          id="fat" placeholder = "введите..." required style="font-size: 2rem;">
+          id="fat" placeholder = "введите..." required style="font-size: 2rem;" autocomplete="off">
         </div>
         @error('fat')
             <p class="text-danger">{{$message}}</p>
@@ -78,7 +78,7 @@
         <div class="w-50">
           <label for="carb" class="form-label">углеводы</label>
           <input type="text" name = "carb" class="form-control" value ="{{old('carb')}}"
-          id="carb" placeholder = "введите..." required style="font-size: 2rem;">
+          id="carb" placeholder = "введите..." required style="font-size: 2rem;" autocomplete="off">
         </div>
         @error('carb')
             <p class="text-danger">{{$message}}</p>
@@ -87,7 +87,7 @@
         <div class="w-50">
           <label for="prot" class="form-label">белки</label>
           <input type="text" name = "prot" class="form-control" value ="{{old('prot')}}"
-          placeholder = "введите..." required style="font-size: 2rem;">
+          placeholder = "введите..." required style="font-size: 2rem;" autocomplete="off">
         </div>
         @error('prot')
             <p class="text-danger">{{$message}}</p>
@@ -96,7 +96,7 @@
           <div class="w-50">
           <label for="fat" class="form-label">G-индекс</label>
           <input type="text" name = "G" class="form-control" value ="{{old('G')}}"
-          id="G" placeholder = "введите..." style="font-size: 2rem;">
+          id="G" placeholder = "введите..." style="font-size: 2rem;" autocomplete="off"  required>
         </div>
         @error('G')
             <p class="text-danger">{{$message}}</p>
@@ -122,7 +122,7 @@
     </div>    
     @endif
     <div class="col">
-    <h2>Найдите продукты для Вашего рецепта в поле поиска <br>или из каталога</h2>
+    <h2>Найдите продукты для Вашего рецепта в поле поиска или из каталога</h2>
         <div id="searchproduct">
             <searchproduct-component></searchproduct-component>
         </div>
@@ -203,7 +203,7 @@
           <!-- ссылка <a href ="{{route('product.show', $product->id)}} " style = "color: green"></a>-->
           <form action="/session" method="POST">
           @csrf
-          <H1>{{$product->name   }}  <span style="font-size: 1.2rem;"> масса-</span>
+          <H1>{{$product->name   }}  <span style="font-size: 1.2rem;"> <br>масса-</span>
            
               <input class = "w-25 ml-6" type="text" name = "massa" placeholder="грамм" required>
           </H1> 
