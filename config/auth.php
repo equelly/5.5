@@ -14,7 +14,7 @@ return [
     */
 //'guard' => 'web' или 'guard' => 'api' для асинхронного
     'defaults' => [
-        'guard' => 'api',
+        'guard' => 'web',
         'passwords' => 'users',
     ],
 
