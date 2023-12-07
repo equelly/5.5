@@ -43,7 +43,7 @@
                 </h3> 
                 
                     <hr>
-                <p class="text-muted">рецепт: <?php echo e($post->content); ?></p>
+                <p class="text-muted">Способ приготовления: <?php echo e($post->content); ?></p>
                 </div>
                 <hr>
                 <div>
@@ -58,7 +58,7 @@
                 
                 <div>
                     <!--оборачиваем в форму т.к. в html нет метода delete -->
-                    <form action="<?php echo e(route('post.delete', $post->id)); ?>" method="post">
+                    <form action="<?php echo e(route('post.delete', $post->id)); ?>" method="POST">
                         <?php echo csrf_field(); ?>
                         <?php echo method_field('delete'); ?>
                         <input type="submit" value = "удалить!" class="btn btn-primary m-3" style="width: 95%;">
@@ -68,11 +68,11 @@
                 <?php endif; ?>
             </div>
         
-            <div class="">
+            <div  class="mt-5">
             
                 
             <?php if(auth()->user() && (auth()->user()->role=='user'|| auth()->user()->role=='admin')): ?>              
-                <div class="m-5">
+                <div>
                 <form action="<?php echo e(route('post.comment.store', $post->id)); ?>" method="POST"> 
                     <?php echo csrf_field(); ?>
                     <label for="content" class="form-label"><i class='far fa-edit' style='font-size:24px;color:#63c34e'></i>оставить комментарий</label>

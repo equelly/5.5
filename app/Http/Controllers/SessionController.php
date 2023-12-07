@@ -104,8 +104,10 @@ class SessionController extends Controller
             'user_id'=>'',
             'image'=>''
          ]);
-        // dd($data);
+         
             //
+          
+            
             $post = Post::create($data);
            //из массива $_SESSION['cart'] выберем данные для добавления 
            foreach($_SESSION['cart'] as $k=>$v){

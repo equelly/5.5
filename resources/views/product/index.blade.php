@@ -135,7 +135,7 @@
         <input type="hidden" name="user_id" value="{{ Auth::user() == null ? '': Auth::user()->id}}">
           <div class="card m-4 w-75">
             <div class="card-header" style="background: #99eb917d">
-            <input type="text" name = "title" value ="{{old('title')}}" class="form-control w-75 m-4" style="font-size: 18px;" 
+            <input type="text" style="text-transform: lowercase; font-size: 18px;" name = "title" value ="{{old('title')}}" class="form-control w-75 m-4" 
         id="title" placeholder = "Название вашего рецепта..." >
         
         @error('title')

@@ -22,7 +22,7 @@
                    
                         <div class="callout mb-1 w-90 d-flex justify-content-between">
                             <div><a href ="<?php echo e(route('post.show', $post->id)); ?> "><h3 class="fw-light text-muted"><?php echo e($post->title); ?></h3></a></div>
-                              <div  style="color:#63c34e;">
+                            <div  style="color:#63c34e;">
                                 <form action="<?php echo e(route('post.like.store', $post->id)); ?>" method="POST">
                                     <?php echo csrf_field(); ?>
                                     <span><?php echo e(($post->liked_users_count) > 0 ? $post->liked_users_count : ''); ?></span>
@@ -37,6 +37,7 @@
                                 <?php endif; ?>
                                     </button>
                                 </form>
+                            </div>
                             </div>
                         </div>
                   
