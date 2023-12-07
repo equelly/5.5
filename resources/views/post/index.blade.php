@@ -23,7 +23,7 @@
                    
                         <div class="callout mb-1 w-90 d-flex justify-content-between">
                             <div><a href ="{{route('post.show', $post->id)}} "><h3 class="fw-light text-muted">{{$post->title}}</h3></a></div>
-                              <div  style="color:#63c34e;">
+                            <div  style="color:#63c34e;">
                                 <form action="{{route('post.like.store', $post->id)}}" method="POST">
                                     @csrf
                                     <span>{{($post->liked_users_count) > 0 ? $post->liked_users_count : ''}}</span>
@@ -38,6 +38,7 @@
                                 @endauth
                                     </button>
                                 </form>
+                            </div>
                             </div>
                         </div>
                   

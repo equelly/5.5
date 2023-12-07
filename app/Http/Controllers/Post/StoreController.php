@@ -15,6 +15,7 @@ class StoreController extends BaseController
     //dd(1111111111);
     //Request
         $data = $request->validated();
+        $data['title'] =  strtolower($data['title']);
     //Service 
     //для синхронного добавления++++  
         $this->service->store($data);

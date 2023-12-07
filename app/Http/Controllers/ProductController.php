@@ -46,7 +46,11 @@ class ProductController extends Controller
             'category_id'=>'required'
         ]);
         
-        Product::create($data);
+        //Product::create($data);
+        //запись в бд уникальных полей по ключам указанным в первом массиве
+        Product::firstOrCreate(['name'=>$data['name']],
+        $data);
+
         return redirect()->route('product.index');
     }
     public function show($id)
