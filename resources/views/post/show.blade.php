@@ -4,16 +4,18 @@
 </head>
 <body>
 <section class="home">
-    <div class="container p-1">
-        <H1 class="title">Рецепт:  <span> {{$post->title}}.</span></H1>
-        <p><h3>всего рецептов:  {{$posts->count()}}</h3></p>
+    <div class="container p-1 mt-5">
+        <div class = "d-flex justify-content-between title">
+            <div><H1>Рецепт:  <span> {{$post->title}}.</span></H1></div>
+            <div><h1>всего рецептов: <span>  {{$posts->count()}}<span> </h1></div>
+        </div>
         <div class="m-1">
            
             <div class="card" style="width:100%">
                 <div class="card-header" style="background: #99eb917d">
 
                     <div class="callout mb-1 w-90"><a href ="{{route('post.show', $post->id)}} ">
-                        <h3 class="fw-light text-muted">{{$post->title}}</h3></a>
+                        <h3  style="font-size:1.5em;color:#63c34e;">{{$post->title}}</h3></a>
                     </div>
                 </div>
             
@@ -29,7 +31,7 @@
                             
                             @if($postproduct['product_id'] == $product->id )
                             <a href ="{{route('product.show', $product->id)}} "> 
-                            <div class="btn btn-outline-primary m-2 p-1" style = "width: auto;font-size: 1.2rem">{{$product->name}}/{{$postproduct['massa']}}гр.</div>
+                            <div class="btn m-2 p-1" style = "width: auto;">{{$product->name}}/{{$postproduct['massa']}}гр.</div>
                             </a>
                             @endif
                                 
@@ -48,13 +50,13 @@
                 </div>
                 <hr>
                 <div>
-                    <a href="{{route('post.index')}}" class="btn btn-primary m-3" style="width: 95%;">вернуться к рецептам</a>
+                    <a href="{{route('post.index')}}" class="btn btn-success m-3" style="width: 95%;">вернуться к рецептам</a>
                 </div>
                 @if((auth()->user() && auth()->user()->role == 'admin') || (auth()->user() && auth()->user()->id == $post->user_id))
       
      
                 <div>
-                    <a href="{{route('post.edit', $post->id)}}" class="btn btn-primary m-3" style="width: 95%;">редактировать</a>
+                    <a href="{{route('post.edit', $post->id)}}" class="btn btn-success m-3" style="width: 95%;">редактировать</a>
                 </div>
                 
                 <div>

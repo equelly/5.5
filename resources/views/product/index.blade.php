@@ -136,7 +136,7 @@
           <div class="card m-4 w-75">
             <div class="card-header" style="background: #99eb917d">
             <input type="text" style="text-transform: lowercase; font-size: 18px;" name = "title" value ="{{old('title')}}" class="form-control w-75 m-4" 
-        id="title" placeholder = "Название вашего рецепта..." >
+        id="title" placeholder = "Название..." >
         
         @error('title')
           <p class="text-danger">{{$message}}</p>
@@ -197,15 +197,16 @@
       <h3>Всего продуктов: {{$products->count()}}</h3>
      
       @foreach($sorted as $product)
+      <div class="d-flex justify-content-center">
       <div class="card m-4 w-75">
         <div class="card-header" style="background: #99eb917d">
           
           <!-- ссылка <a href ="{{route('product.show', $product->id)}} " style = "color: green"></a>-->
           <form action="/session" method="POST">
           @csrf
-          <H1>{{$product->name   }}  <span style="font-size: 1.2rem;"> <br>масса-</span>
+          <H1>{{$product->name   }}  <span class="text-muted"> <br>масса-</span>
            
-              <input class = "w-25 ml-6" type="text" name = "massa" placeholder="грамм" required>
+              <input class = "w-25 ml-6" type="text" name = "massa" placeholder="грамм" autocomplete="off" required>
           </H1> 
         </div>
         
@@ -220,15 +221,13 @@
             </div>
           </div>
         </form>
+        </div>
       @endforeach
     </div>
   </section>
 
-
-
-
-  <div>
-    {{$sorted->links()}}
+  <div class="d-flex justify-content-center mb-5 " style="font-size:large;">
+    <div class="text-success">{{$sorted->links()}}</div>
   </div>
   @endsection
   

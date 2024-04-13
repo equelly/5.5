@@ -23,7 +23,7 @@ class IndexController extends BaseController
          //в $filter массив данных из строки запроса
          //метод из трейта scopeFilter = filter
          //dd($filter);
-         $posts = Post::filter($filter)->paginate(10);
+         $products = Product::filter($filter)->paginate(10);
 
 /*реализация фильтра пример:  +++++++++++++++++++++++++       
          public function __invoke(FilterRequest $request)
@@ -46,11 +46,11 @@ class IndexController extends BaseController
       //метод all выведет все записи,а для пагинации применяется метод paginate()
       //$posts = Post::paginate(2);
       $all_posts = Post::all();
-      $products = Product::all();
+      $all_products = Product::all();
       $postproducts = PostProduct::all();
      
                         //dd($postproducts);
-      return view('post.index', compact('posts', 'products', 'postproducts', 'all_posts'));
+      return view('post.index', compact('products', 'all_products', 'postproducts', 'all_posts'));
    } 
 
 }

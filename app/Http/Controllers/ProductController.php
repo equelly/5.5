@@ -17,7 +17,7 @@ class ProductController extends Controller
         //отсортируем массив полученный из БД по алфавиту*******
         $sorted = DB::table('products')
                 ->orderBy('name', 'asc')
-                ->simplePaginate(20);
+                ->simplePaginate(5);
         //************* */
         $categories = Category::all();
         

@@ -52,7 +52,7 @@
                             <?php if($postproduct['product_id'] == $product->id ): ?>
                             <a href ="<?php echo e(route('product.show', $product->id)); ?> "> 
         
-                            <div class="btn btn-outline-primary m-2 p-1" style = "width: auto;font-size: 1.5rem"><?php echo e($product->name); ?>/<?php echo e($postproduct['massa']); ?>гр.</div>
+                            <div class="btn m-2 p-1" style = "width: auto;font-size: 1.5rem"><?php echo e($product->name); ?>/<?php echo e($postproduct['massa']); ?>гр.</div>
                             </a>
                             <?php endif; ?>
                            
@@ -76,11 +76,11 @@
     <h1 class="title">Топ <span>рецептов</span></h1>
             <div class="m-1">
                 <?php $__currentLoopData = $likedPosts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="card">
+                    <div class="card m-3">
                     <div class="card-header " style="background: #99eb917d">
                    
                         <div class="callout mb-1 w-90 d-flex justify-content-between">
-                            <div><a href ="<?php echo e(route('post.show', $post->id)); ?> "><h3 class="fw-light text-muted"><?php echo e($post->title); ?></h3></a></div>
+                            <div><a href ="<?php echo e(route('post.show', $post->id)); ?> "><h3 style="font-size:1.5em;color:#63c34e;"><?php echo e($post->title); ?></h3></a></div>
                                 <div style="color:#63c34e;">
                                 <form action="<?php echo e(route('post.like.store', $post->id)); ?>" method="POST">
                                     <?php echo csrf_field(); ?>
@@ -110,7 +110,7 @@
                             <?php if($postproduct['product_id'] == $product->id ): ?>
                             <a href ="<?php echo e(route('product.show', $product->id)); ?> "> 
         
-                            <div class="btn btn-outline-primary m-2 p-1" style = "width: auto;font-size: 1.2rem"><?php echo e($product->name); ?>/<?php echo e($postproduct['massa']); ?>гр.</div>
+                            <div class="btn m-2 p-1" style = "width: auto;"><?php echo e($product->name); ?>/<?php echo e($postproduct['massa']); ?>гр.</div>
                             </a>
                             <?php endif; ?>
                            
@@ -172,7 +172,7 @@
                             <?php if($postproduct['product_id'] == $product->id ): ?>
                             <a href ="<?php echo e(route('product.show', $product->id)); ?> "> 
         
-                            <div class="btn btn-outline-primary m-2 p-1" style = "width: auto;font-size: 1.2rem"><?php echo e($product->name); ?>/<?php echo e($postproduct['massa']); ?>гр.</div>
+                            <div class="btn m-2 p-1" style = "width: auto;font-size: 1.2rem"><?php echo e($product->name); ?>/<?php echo e($postproduct['massa']); ?>гр.</div>
                             </a>
                             <?php endif; ?>
                            
@@ -193,9 +193,8 @@
             
         </div>
 <!-- пагинация-->
-        <div>
-            <?php echo e($posts->withQueryString()->links()); ?>
-
+        <div class="d-flex justify-content-center">
+        <div class="text-success" style="font-size: 20px"><?php echo e($posts->withQueryString()->links()); ?></div>
         </div>
 </section>
         

@@ -179,7 +179,7 @@ unset($__errorArgs, $__bag); ?>
           <div class="card m-4 w-75">
             <div class="card-header" style="background: #99eb917d">
             <input type="text" style="text-transform: lowercase; font-size: 18px;" name = "title" value ="<?php echo e(old('title')); ?>" class="form-control w-75 m-4" 
-        id="title" placeholder = "Название вашего рецепта..." >
+        id="title" placeholder = "Название..." >
         
         <?php $__errorArgs = ['title'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -254,15 +254,16 @@ unset($__errorArgs, $__bag); ?>
       <h3>Всего продуктов: <?php echo e($products->count()); ?></h3>
      
       <?php $__currentLoopData = $sorted; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+      <div class="d-flex justify-content-center">
       <div class="card m-4 w-75">
         <div class="card-header" style="background: #99eb917d">
           
           <!-- ссылка <a href ="<?php echo e(route('product.show', $product->id)); ?> " style = "color: green"></a>-->
           <form action="/session" method="POST">
           <?php echo csrf_field(); ?>
-          <H1><?php echo e($product->name); ?>  <span style="font-size: 1.2rem;"> <br>масса-</span>
+          <H1><?php echo e($product->name); ?>  <span class="text-muted"> <br>масса-</span>
            
-              <input class = "w-25 ml-6" type="text" name = "massa" placeholder="грамм" required>
+              <input class = "w-25 ml-6" type="text" name = "massa" placeholder="грамм" autocomplete="off" required>
           </H1> 
         </div>
         
@@ -277,16 +278,13 @@ unset($__errorArgs, $__bag); ?>
             </div>
           </div>
         </form>
+        </div>
       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </div>
   </section>
 
-
-
-
-  <div>
-    <?php echo e($sorted->links()); ?>
-
+  <div class="d-flex justify-content-center mb-5 " style="font-size:large;">
+    <div class="text-success"><?php echo e($sorted->links()); ?></div>
   </div>
   <?php $__env->stopSection(); ?>
   

@@ -4,7 +4,7 @@
   <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
          
-          <input style="font-size: 18px;border-color: green;" @keyup="showHint(this.val.toLowerCase())" v-model="val" class="form-control" type="search" placeholder="поиск рецепта!!!" aria-label="Search">
+          <input style="font-size: 18px;border-color: green;" @keyup="showHint(this.val.toLowerCase())" v-model="val" class="form-control" type="search" placeholder="поиск рецепта" aria-label="Search">
           <div class="input-group-append">
                         
           </div>

@@ -53,7 +53,7 @@
                             @if($postproduct['product_id'] == $product->id )
                             <a href ="{{route('product.show', $product->id)}} "> 
         
-                            <div class="btn btn-outline-primary m-2 p-1" style = "width: auto;font-size: 1.5rem">{{$product->name}}/{{$postproduct['massa']}}гр.</div>
+                            <div class="btn m-2 p-1" style = "width: auto;font-size: 1.5rem">{{$product->name}}/{{$postproduct['massa']}}гр.</div>
                             </a>
                             @endif
                            
@@ -77,11 +77,11 @@
     <h1 class="title">Топ <span>рецептов</span></h1>
             <div class="m-1">
                 @foreach($likedPosts as $post)
-                    <div class="card">
+                    <div class="card m-3">
                     <div class="card-header " style="background: #99eb917d">
                    
                         <div class="callout mb-1 w-90 d-flex justify-content-between">
-                            <div><a href ="{{route('post.show', $post->id)}} "><h3 class="fw-light text-muted">{{$post->title}}</h3></a></div>
+                            <div><a href ="{{route('post.show', $post->id)}} "><h3 style="font-size:1.5em;color:#63c34e;">{{$post->title}}</h3></a></div>
                                 <div style="color:#63c34e;">
                                 <form action="{{route('post.like.store', $post->id)}}" method="POST">
                                     @csrf
@@ -111,7 +111,7 @@
                             @if($postproduct['product_id'] == $product->id )
                             <a href ="{{route('product.show', $product->id)}} "> 
         
-                            <div class="btn btn-outline-primary m-2 p-1" style = "width: auto;font-size: 1.2rem">{{$product->name}}/{{$postproduct['massa']}}гр.</div>
+                            <div class="btn m-2 p-1" style = "width: auto;">{{$product->name}}/{{$postproduct['massa']}}гр.</div>
                             </a>
                             @endif
                            
@@ -173,7 +173,7 @@
                             @if($postproduct['product_id'] == $product->id )
                             <a href ="{{route('product.show', $product->id)}} "> 
         
-                            <div class="btn btn-outline-primary m-2 p-1" style = "width: auto;font-size: 1.2rem">{{$product->name}}/{{$postproduct['massa']}}гр.</div>
+                            <div class="btn m-2 p-1" style = "width: auto;font-size: 1.2rem">{{$product->name}}/{{$postproduct['massa']}}гр.</div>
                             </a>
                             @endif
                            
@@ -194,8 +194,8 @@
             
         </div>
 <!-- пагинация-->
-        <div>
-            {{$posts->withQueryString()->links()}}
+        <div class="d-flex justify-content-center">
+        <div class="text-success" style="font-size: 20px">{{$posts->withQueryString()->links()}}</div>
         </div>
 </section>
         

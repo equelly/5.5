@@ -115,11 +115,26 @@ section {
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
 }
 .btn:hover {
-  background: #cbd3ceac;
+  background: #d9e9dfac;
 }
 a:link {
+  color:  #228d0a !important;
   text-decoration: none;
   
+}
+a {
+  color:#63c34e;
+  
+}
+a:hover {
+  color:#228d0a !important;
+
+}
+
+
+.page-link {
+  font-size: large;
+  color:#63c34e;
 }
 .header {
   position: fixed;
@@ -316,7 +331,7 @@ a:link {
   z-index: 10;
   padding: 2px;
   width: 90%;
-  font-size: 1.3rem;
+ 
   box-shadow: 0px 8px 16px 0px rgba(150, 237, 142, 0.5);
 }
 .header .login-form {
