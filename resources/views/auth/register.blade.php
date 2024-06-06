@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header">{{ __('Регистрация') }}</div>
 
@@ -15,7 +15,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Имя') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -74,8 +74,8 @@
                             
                         </div>
                         <div class="row">
-                            <div class="col-md-6 offset-md-4 m-4">
-                                <button type="submit" class="btn" style = "background: #63c34e">
+                            <div class="">
+                                <button type="submit" class="btn w-100" style = "background: #63c34e">
                                     {{ __('Зарегистрироваться') }}
                                 </button>
                             </div>
