@@ -42,7 +42,7 @@
                             </div>
                         </div>
                   
-                    </div>
+                    
                 <div class="card-body">
                     <p>необходимые продукты</p>
                     @foreach($postproducts as $postproduct)

@@ -41,7 +41,7 @@
                             </div>
                         </div>
                   
-                    </div>
+                    
                 <div class="card-body">
                     <p>необходимые продукты</p>
                     <?php $__currentLoopData = $postproducts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $postproduct): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
