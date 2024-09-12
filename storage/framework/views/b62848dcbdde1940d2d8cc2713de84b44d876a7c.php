@@ -164,20 +164,24 @@ unset($__errorArgs, $__bag); ?>
     </div>    
     <?php endif; ?>
     <div class="col">
-    <h2>Найдите продукты для Вашего рецепта в поле поиска или из каталога</h2>
-        <div id="searchproduct">
+      <div class="" style="margin: auto;">
+      
+    <h1 class="m-3">Найдите продукты для Вашего рецепта в поле поиска </br>или из каталога</h1>
+        <div id="searchproduct" style="margin: auto; max-width:75%">
             <searchproduct-component></searchproduct-component>
         </div>
      <h3> 
-      <?php if(isset($productsCart)): ?>Продуктов-<?php echo e(count($productsCart)); ?>
-
+      <?php if(isset($productsCart)): ?>
       
+      <h1 class="title">Количество продуктов<span><?php echo e(count($productsCart)); ?></span> </h1>
+      <div class="card enter m-4">
       <form action = "" method = "POST">
         <!-- токен для безопасной передачи данных всеми методами кроме get-->    
         <?php echo csrf_field(); ?>
         <input type="hidden" name="user_id" value="<?php echo e(Auth::user() == null ? '': Auth::user()->id); ?>">
-          <div class="card m-4 w-75">
+          
             <div class="card-header" style="background: #99eb917d">
+            <h1>карточка для заполнения рецепта </h1>
             <input type="text" style="text-transform: lowercase; font-size: 18px;" name = "title" value ="<?php echo e(old('title')); ?>" class="form-control w-75 m-4" 
         id="title" placeholder = "Название..." >
         
@@ -248,42 +252,43 @@ unset($__errorArgs, $__bag); ?>
       <?php else: ?>
       Для рецепта ничего не выбрано</h3>
       <?php endif; ?>
-
+    </div>
 
       <h1 class="title">Каталог <span>продуктов</span></h1>
       <h3>Всего продуктов: <?php echo e($products->count()); ?></h3>
      
       <?php $__currentLoopData = $sorted; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
       <div class="d-flex justify-content-center">
-      <div class="card m-4 w-75">
-        <div class="card-header" style="background: #99eb917d">
-          
-          <!-- ссылка <a href ="<?php echo e(route('product.show', $product->id)); ?> " style = "color: green"></a>-->
+        <div class="card m-4 w-75">
+          <div class="card-header" style="background: #99eb917d">
+            
+            <!-- ссылка <a href ="<?php echo e(route('product.show', $product->id)); ?> " style = "color: green"></a>-->
           <form action="/session" method="POST">
-          <?php echo csrf_field(); ?>
-          <H1><?php echo e($product->name); ?>  <span class="text-muted"> <br>масса-</span>
-           
-              <input class = "w-25 ml-6" type="text" name = "massa" placeholder="грамм" autocomplete="off" required>
-          </H1> 
-        </div>
-        
-            <div class="card-body">
-              <h5 class="card-title">содержит: <?php echo e($product->prot); ?>бел./<?php echo e($product->fat); ?>жир./<?php echo e($product->carb); ?>угл.</h5>
-              <p class="card-text"></p>
-              
-                <input type="hidden" name="action" value="добавить" >
-              <div style="align-content: center;">
-                <button class="btn btn-card w-90 m-3" name= "product_id" type= 'submit' value ='<?php echo e($product->id); ?>'>добавить к рецепту</button>
-              </div>
-            </div>
+            <?php echo csrf_field(); ?>
+            <H1><?php echo e($product->name); ?>  <span class="text-muted"> <br>масса-</span>
+            
+                <input class = "w-25 ml-6" type="text" name = "massa" placeholder="грамм" autocomplete="off" required>
+            </H1> 
           </div>
-        </form>
+          
+          <div class="card-body">
+                <h5 class="card-title">содержит: <?php echo e($product->prot); ?>бел./<?php echo e($product->fat); ?>жир./<?php echo e($product->carb); ?>угл.</h5>
+                <p class="card-text"></p>
+                
+                  <input type="hidden" name="action" value="добавить" >
+                <div style="align-content: center;">
+                  <button class="btn btn-card w-90 m-3" name= "product_id" type= 'submit' value ='<?php echo e($product->id); ?>'>добавить к рецепту</button>
+                </div>
+          </div>
+          
+          </form>
         </div>
+      </div>
       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </div>
   </section>
 
-  <div class="d-flex justify-content-center mb-5 " style="font-size:large;">
+  <div class="d-flex justify-content-center mb-5 ">
     <div class="text-success"><?php echo e($sorted->links()); ?></div>
   </div>
   <?php $__env->stopSection(); ?>

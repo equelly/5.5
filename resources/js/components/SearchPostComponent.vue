@@ -63,7 +63,7 @@
                         };
 
                        
-                        console.log(jsonHints);
+                        //console.log(jsonHints);
                     }
                 };
                 xmlhttp.open("GET", "/hints?q=" + str, true);

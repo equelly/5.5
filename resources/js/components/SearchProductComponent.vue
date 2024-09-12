@@ -1,12 +1,12 @@
 <template> 
-<div class="dropdown w-90">
+<div class="dropdown w-100">
         
          
-          <input  style="font-size: 18px;border-color: green;" @input="showHint(this.val.toLowerCase())" v-model="val" class="form-control" type="search" placeholder="Найти продукт..." aria-label="Search">
+          <input  style="font-size: 18px;border-color: green;" @input="showHint(this.val.toLowerCase())" v-model="val" class="form-control w-100" type="search" placeholder="Найти продукт..." aria-label="Search">
          
         
-          <div id="hintDropdown" class="hintDropdown-content">
-            <div id="HintForPost"></div>
+          <div id="hintDropdown" class="hintDropdown-content d-flex justify-center">
+            <div id="HintForProduct"></div>
             
           </div>
        
@@ -43,9 +43,13 @@
 
           showHint(str) {
             //сначала удалим подсказки от предыдущих запросов
-	          document.querySelector('#HintForPost').innerHTML = '';
+            document.querySelector('#HintForProduct').innerHTML = '';
+            //... и класс
+	          document.querySelector('#HintForProduct').className = '';
               if (str.length == 0) {
-                document.getElementById("nameProduct").innerHTML = "";
+                document.querySelector('#HintForProduct').innerHTML = 'в поле поиска ничего нет';
+                document.querySelector('#HintForProduct').className = 'text-red-500 animate-pulse p-3';
+              
                 return;
             } else {
                 var xmlhttp = new XMLHttpRequest();
@@ -53,15 +57,21 @@
                 xmlhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                       let jsonHints = JSON.parse(this.responseText);
+                      //если не найдено соответствий в базе данных выводим сообщение
+                        if(jsonHints.length== 0 && str != ''){
+                          document.querySelector('#HintForProduct').innerHTML = "Ничего не найдено";
+                          document.querySelector('#HintForProduct').className = 'text-red-500 animate-pulse p-3';
+                          return;
+                        };
                       jsonHints = jsonHints.slice(0,10);
-                      //console.log(jsonHints);
-                      let parentHint = document.querySelector('#HintForPost');  
                       
+                      let parentHint = document.querySelector('#HintForProduct');  
+                     
                       let titleCart = "", hintCart = '', bodyCart = '', formCart='', inputCartHidden ='', inputCartSubmit ='', inputCart = '';
                         for (let i = 0; i < jsonHints.length; i++) { 
                           hintCart = document.createElement('div');
                             
-                            hintCart.className = "card m-4 w-75";
+                            hintCart.className = "card m-4";
                           titleCart = document.createElement('h1');
 
                               titleCart.className = "card-header";
@@ -80,7 +90,7 @@
                           
                           bodyCart = document.createElement('div'); 
                               bodyCart.className = "card-body";
-                              bodyCart.innerHTML = 'Содержит: '+jsonHints[i].carb+'угл./'+jsonHints[i].prot+'бел./'+jsonHints[i].fat+'ж';
+                              bodyCart.innerHTML = 'Содержит: </br>'+jsonHints[i].carb+'угл./'+jsonHints[i].prot+'бел./'+jsonHints[i].fat+'ж';
                           formCart = document.createElement('form'); 
                               formCart.action = '/session';
                               formCart.method = "POST";
@@ -94,10 +104,10 @@
                               inputCartHidden.value= 'добавить';
                           inputCartSubmit= document.createElement('button');
                               inputCartSubmit.type= 'submit';
-                              inputCartSubmit.innerHTML= 'добавить';
+                              inputCartSubmit.innerHTML= 'добавить к рецепту';
                               inputCartSubmit.name= "product_id";
                               inputCartSubmit.value= jsonHints[i].id;
-                              inputCartSubmit.className ="btn btn-card w-90 m-3";
+                              inputCartSubmit.className ="btn btn-card m-3";
                               titleCart.appendChild(inputCart);
                              formCart.appendChild(titleCart);
                              formCart.appendChild(bodyCart);

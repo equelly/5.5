@@ -56,8 +56,8 @@ foreach($a as $product){
 //и полученный массив переведем в json формат для работы с ним в js
 $jsonHints = json_encode($arrHints, JSON_UNESCAPED_UNICODE);
 
-//echo count($arrHints) == 0 ? "no suggestion" : print($jsonHints);
-echo $jsonHints; 
+echo  $jsonHints;
+
 
     }
 

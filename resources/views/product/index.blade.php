@@ -122,19 +122,24 @@
     </div>    
     @endif
     <div class="col">
-    <h2>Найдите продукты для Вашего рецепта в поле поиска или из каталога</h2>
-        <div id="searchproduct">
+      <div class="" style="margin: auto;">
+      
+    <h1 class="m-3">Найдите продукты для Вашего рецепта в поле поиска </br>или из каталога</h1>
+        <div id="searchproduct" style="margin: auto; max-width:75%">
             <searchproduct-component></searchproduct-component>
         </div>
      <h3> 
-      @if(isset($productsCart))Продуктов-{{count($productsCart)}}
+      @if(isset($productsCart))
       
+      <h1 class="title">Количество продуктов<span>{{count($productsCart)}}</span> </h1>
+      <div class="card enter m-4">
       <form action = "" method = "POST">
         <!-- токен для безопасной передачи данных всеми методами кроме get-->    
         @csrf
         <input type="hidden" name="user_id" value="{{ Auth::user() == null ? '': Auth::user()->id}}">
-          <div class="card m-4 w-75">
+          
             <div class="card-header" style="background: #99eb917d">
+            <h1>карточка для заполнения рецепта </h1>
             <input type="text" style="text-transform: lowercase; font-size: 18px;" name = "title" value ="{{old('title')}}" class="form-control w-75 m-4" 
         id="title" placeholder = "Название..." >
         
@@ -191,42 +196,43 @@
       @else
       Для рецепта ничего не выбрано</h3>
       @endif
-
+    </div>
 
       <h1 class="title">Каталог <span>продуктов</span></h1>
       <h3>Всего продуктов: {{$products->count()}}</h3>
      
       @foreach($sorted as $product)
       <div class="d-flex justify-content-center">
-      <div class="card m-4 w-75">
-        <div class="card-header" style="background: #99eb917d">
-          
-          <!-- ссылка <a href ="{{route('product.show', $product->id)}} " style = "color: green"></a>-->
+        <div class="card m-4 w-75">
+          <div class="card-header" style="background: #99eb917d">
+            
+            <!-- ссылка <a href ="{{route('product.show', $product->id)}} " style = "color: green"></a>-->
           <form action="/session" method="POST">
-          @csrf
-          <H1>{{$product->name   }}  <span class="text-muted"> <br>масса-</span>
-           
-              <input class = "w-25 ml-6" type="text" name = "massa" placeholder="грамм" autocomplete="off" required>
-          </H1> 
-        </div>
-        
-            <div class="card-body">
-              <h5 class="card-title">содержит: {{$product->prot}}бел./{{$product->fat}}жир./{{$product->carb}}угл.</h5>
-              <p class="card-text"></p>
-              
-                <input type="hidden" name="action" value="добавить" >
-              <div style="align-content: center;">
-                <button class="btn btn-card w-90 m-3" name= "product_id" type= 'submit' value ='{{$product->id}}'>добавить к рецепту</button>
-              </div>
-            </div>
+            @csrf
+            <H1>{{$product->name   }}  <span class="text-muted"> <br>масса-</span>
+            
+                <input class = "w-25 ml-6" type="text" name = "massa" placeholder="грамм" autocomplete="off" required>
+            </H1> 
           </div>
-        </form>
+          
+          <div class="card-body">
+                <h5 class="card-title">содержит: {{$product->prot}}бел./{{$product->fat}}жир./{{$product->carb}}угл.</h5>
+                <p class="card-text"></p>
+                
+                  <input type="hidden" name="action" value="добавить" >
+                <div style="align-content: center;">
+                  <button class="btn btn-card w-90 m-3" name= "product_id" type= 'submit' value ='{{$product->id}}'>добавить к рецепту</button>
+                </div>
+          </div>
+          
+          </form>
         </div>
+      </div>
       @endforeach
     </div>
   </section>
 
-  <div class="d-flex justify-content-center mb-5 " style="font-size:large;">
+  <div class="d-flex justify-content-center mb-5 ">
     <div class="text-success">{{$sorted->links()}}</div>
   </div>
   @endsection

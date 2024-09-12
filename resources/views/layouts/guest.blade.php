@@ -25,7 +25,7 @@
 
 <a href="/" class="logo"><i class='fab fa-nutritionix'>5.5</i></a>
 
-<nav class="navbar ml-5 w-90 callout d-flex justify-content-around">
+<nav class="navbar ml-5 w-90 callout">
 
   
     <a href="{{route('post.index')}}" class="nav-link">Рецепты</a>
