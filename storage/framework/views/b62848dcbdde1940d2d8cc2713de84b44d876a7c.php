@@ -175,7 +175,7 @@ unset($__errorArgs, $__bag); ?>
       
       <h1 class="title">Количество продуктов<span><?php echo e(count($productsCart)); ?></span> </h1>
       <div class="card enter m-4">
-      <form action = "" method = "POST">
+      <form action = "" method = "POST"  enctype="multipart/form-data">
         <!-- токен для безопасной передачи данных всеми методами кроме get-->    
         <?php echo csrf_field(); ?>
         <input type="hidden" name="user_id" value="<?php echo e(Auth::user() == null ? '': Auth::user()->id); ?>">
@@ -183,7 +183,7 @@ unset($__errorArgs, $__bag); ?>
             <div class="card-header" style="background: #99eb917d">
             <h1>карточка для заполнения рецепта </h1>
             <input type="text" style="text-transform: lowercase; font-size: 18px;" name = "title" value ="<?php echo e(old('title')); ?>" class="form-control w-75 m-4" 
-        id="title" placeholder = "Название..." >
+        id="title" placeholder = "Название..." required>
         
         <?php $__errorArgs = ['title'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -228,7 +228,7 @@ unset($__errorArgs, $__bag); ?>
                 <div class="mb-3">
                   <label for="content" class="form-label">Способ приготовления</label>
                   <textarea rows="5" name = "content" class="form-control" 
-                  id="content" placeholder = "<?php echo e(old('content')); ?>" style="font-size: 14px;" ></textarea>
+                  id="content" placeholder = "<?php echo e(old('content')); ?>" style="font-size: 14px;" required></textarea>
                   <?php $__errorArgs = ['content'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -241,6 +241,10 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                 </div>
+                <div> 
+                  <label for="foto" class="pt-3">фото готового продукта</label><br>
+                  <input class="focus:outline-none focus:ring focus:border-blue-500 mt-3 w-30" type="file" name="image" id="foto" placeholder="вставить"  value="" style="border-bottom: 2px solid #14B8A6;border-right: 2px solid #14B8A6">
+                  </div>
                 <hr>
                 <?php if(auth()->user()): ?>
                 <button type="submit" name="action" value="добавить рецепт"class="btn btn-primary m-3 w-95">добавить рецепт</button>

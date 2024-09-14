@@ -48,6 +48,12 @@
                     <hr>
                 <p class="text-muted">Способ приготовления: {{$post->content}}</p>
                 </div>
+                @if ($post->image !== NULL)
+                    <div class="flex justify-content-center mt-4">
+                       
+                        <img src="{{asset('storage/'.$post->image)}}" alt='some photo...'>
+                    </div>
+                @endif
                 <hr>
                 <div>
                     <a href="{{route('post.index')}}" class="btn btn-success m-3" style="width: 95%;">вернуться к рецептам</a>

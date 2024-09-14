@@ -7,7 +7,7 @@ use App\Models\Product;
 use App\Models\PostProduct;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
-
+use Illuminate\Support\Facades\Storage;
 
 class SessionController extends Controller
 {
@@ -89,7 +89,6 @@ class SessionController extends Controller
        
         //добавляем рецепт в БД
       if (isset($_POST['action']) and $_POST['action'] == 'добавить рецепт'){
-         
         
         //метод  request() возвращает данные из полей input - name='title', name= 'content' и т.д.
         //далее метод validate() валидирует эти данные
@@ -104,10 +103,16 @@ class SessionController extends Controller
             'user_id'=>'',
             'image'=>''
          ]);
-         
-            //
-          
-            
+           //добавляем изображение (file) в директорию storage/app/public
+        if(isset($data['image']) && $data['image']!== NULL){
+         //класс Storage метод put добавит изображение (file) в директорию storage/app/<первый аргумент функции>
+       $saveImage = Storage::put('public', $data['image']);
+       //разделим строку по символу "/" и сохраним в БД путь для вывода изображения
+       $pieces = explode("/", $saveImage);
+       
+       $data['image'] = $pieces[1];
+     }
+   
             $post = Post::create($data);
            //из массива $_SESSION['cart'] выберем данные для добавления 
            foreach($_SESSION['cart'] as $k=>$v){

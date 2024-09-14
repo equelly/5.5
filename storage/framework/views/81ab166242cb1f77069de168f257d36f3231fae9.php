@@ -47,6 +47,12 @@
                     <hr>
                 <p class="text-muted">Способ приготовления: <?php echo e($post->content); ?></p>
                 </div>
+                <?php if($post->image !== NULL): ?>
+                    <div class="flex justify-content-center mt-4">
+                       
+                        <img src="<?php echo e(asset('storage/'.$post->image)); ?>" alt='some photo...'>
+                    </div>
+                <?php endif; ?>
                 <hr>
                 <div>
                     <a href="<?php echo e(route('post.index')); ?>" class="btn btn-success m-3" style="width: 95%;">вернуться к рецептам</a>
