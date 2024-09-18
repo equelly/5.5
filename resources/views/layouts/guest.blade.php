@@ -115,10 +115,10 @@
     <form method="POST" action="{{ route('login') }}" class="login-form">
         <h3>форма входа</h3>
                         @csrf 
-            <div class="row mb-3">
-                <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email адрес') }}</label>
+            <div class="row">
+                <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
 
-                    <div class="col-md-6">
+                    <div class="col">
         <input  style="font-size: 1.4rem;"  id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
             @error('email')
@@ -130,10 +130,11 @@
             </div>
             <div class="row mb-3">
                 <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Пароль') }}</label>
-                    <div class="col-md-6">
-            <input style="font-size: 1.4rem;" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-            <div class="remember">
-              <input type="checkbox" id="show" onclick="showPassword()">
+                    <div class="col">
+                <input style="font-size: 1.4rem;" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+            </div>
+            <div class="remember justify-end">
+              <input type="checkbox" id="show" class="accent-green-600" onclick="showPassword()">
               <label for="show" id="check">показать пароль</label>
              </div>
                 
@@ -146,7 +147,7 @@
                     </div>
             </div>
     <div class="remember">
-        <input type="checkbox" name="" id="remember-me">
+        <input type="checkbox" name="remember"  value="1" id="remember-me" class="accent-green-600">
         <label for="remember-me">запомнить меня</label>
     </div>
     <input type="submit" value="Войти" class="btn">

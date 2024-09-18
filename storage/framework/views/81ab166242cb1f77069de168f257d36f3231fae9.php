@@ -10,7 +10,7 @@
         </div>
         <div class="m-1">
            
-            <div class="card" style="width:100%">
+            <div class="card enter" style="width:100%">
                 <div class="card-header" style="background: #99eb917d">
 
                     <div class="callout mb-1 w-90"><a href ="<?php echo e(route('post.show', $post->id)); ?> ">
@@ -48,20 +48,19 @@
                 <p class="text-muted">Способ приготовления: <?php echo e($post->content); ?></p>
                 </div>
                 <?php if($post->image !== NULL): ?>
-                    <div class="flex justify-content-center mt-4">
+                <p class="ml-3">вот что получилось!</p>
+                    <div class="flex justify-content-center mt-4 m-2">
                        
                         <img src="<?php echo e(asset('storage/'.$post->image)); ?>" alt='some photo...'>
                     </div>
                 <?php endif; ?>
                 <hr>
-                <div>
-                    <a href="<?php echo e(route('post.index')); ?>" class="btn btn-success m-3" style="width: 95%;">вернуться к рецептам</a>
-                </div>
+             
                 <?php if((auth()->user() && auth()->user()->role == 'admin') || (auth()->user() && auth()->user()->id == $post->user_id)): ?>
       
      
                 <div>
-                    <a href="<?php echo e(route('post.edit', $post->id)); ?>" class="btn btn-success m-3" style="width: 95%;">редактировать</a>
+                    <a href="<?php echo e(route('post.edit', $post->id)); ?>" class="btn btn-success m-3 hover:bg-gray-500/50" style="width: 95%;"><p style="color:white">редактировать</p></a>
                 </div>
                 
                 <div>
@@ -69,7 +68,7 @@
                     <form action="<?php echo e(route('post.delete', $post->id)); ?>" method="POST">
                         <?php echo csrf_field(); ?>
                         <?php echo method_field('delete'); ?>
-                        <input type="submit" value = "удалить!" class="btn btn-primary m-3" style="width: 95%;">
+                        <input type="submit" value = "удалить!" class="btn btn-primary m-3 hover:bg-gray-500/50" style="width: 95%;">
                     </form>
                     
                 </div>
@@ -84,7 +83,8 @@
                 <form action="<?php echo e(route('post.comment.store', $post->id)); ?>" method="POST"> 
                     <?php echo csrf_field(); ?>
                     <label for="content" class="form-label"><i class='far fa-edit' style='font-size:24px;color:#63c34e'></i>оставить комментарий</label>
-                    <textarea name = "message" class="form-control" rows="4" cols="50" style="font-size: 1.5rem;"
+                    <textarea name = "message" class="form-control" rows="4" cols="50" style="font-size: 1.5rem;border-radius: 10px;
+    border: 2px solid #73AD21;"
                     id="content" placeholder = "текст комментария..." required><?php echo e(old('content')); ?></textarea>
                     <?php $__errorArgs = ['content'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -107,8 +107,9 @@ unset($__errorArgs, $__bag); ?>
     <H1 class="title">Комментарии <span>(<?php echo e($comments->count()); ?>)</span></H1>
     <?php $__currentLoopData = $comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     
-        <div class="toast m-4" style="display:block; font-size:1.1em; width: 90%" false role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
+        <div class="toast m-4" style="display:block; font-size:0.8em; width: 75%;  border-radius: 10px;
+    border: 2px solid #73AD21;" false role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header" style="background-color: transparent;">
               
                 <strong class="me-auto"><?php echo e($comment->name); ?> </strong>
                 <small class="text-body-secondary"><?php echo e($comment->created_at); ?></small>

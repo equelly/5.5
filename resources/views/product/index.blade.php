@@ -128,7 +128,7 @@
         <div id="searchproduct" style="margin: auto; max-width:75%">
             <searchproduct-component></searchproduct-component>
         </div>
-     <h3> 
+     
       @if(isset($productsCart))
       
       <h1 class="title">Количество продуктов<span>{{count($productsCart)}}</span> </h1>
@@ -236,7 +236,7 @@
     </div>
   </section>
 
-  <div class="d-flex justify-content-center mb-5 ">
+  <div class="d-flex justify-content-center m-3">
     <div class="text-success">{{$sorted->links()}}</div>
   </div>
   @endsection

@@ -28,7 +28,10 @@ html {
 section {
   padding: 3rem 9%;
 }
-
+input[type='checkbox']:checked + label {
+  
+  font-weight: bold; /* Текст будет выделяться жирностью */
+}
 .heading {
   background: url(../image/heading-bg.jpg) no-repeat;
   background-size: cover;

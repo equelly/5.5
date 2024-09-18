@@ -6,20 +6,19 @@
    <br>
    <br>
    <br>
-        <div class="ml-4 pl-4">
-            <div id = "searchpost" class="container mt-10">
-                <searchpost-component></searchpost-component>
-            </div>
+        <h1 class="m-3">Поиск рецепта в каталоге</h1>
+        <div id="searchpost" style="margin: auto; max-width:75%">
+            <searchpost-component></searchpost-component>
+        </div>
+        </div>
             <?php if(auth()->user() && (auth()->user()->role=='user'|| auth()->user()->role=='admin')): ?>
     
     
             <h1 class="title">Любимые <span>рецепты(<?php echo e($userLikedPost->count()); ?>)</span></h1>
             <div class="ml-5">
                 <?php $__currentLoopData = $userLikedPost; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-               
-                    <div class="card">
+                <div class="card">
                     <div class="card-header " style="background: #99eb917d">
-                   
                         <div class="callout mb-1 w-90 d-flex justify-content-between">
                             <div><a href ="<?php echo e(route('post.show', $post->id)); ?> "><h3 class="fw-light text-muted"><?php echo e($post->title); ?></h3></a></div>
                             <div  style="color:#63c34e;">
@@ -38,10 +37,8 @@
                                     </button>
                                 </form>
                             </div>
-                            </div>
                         </div>
-                  
-                    
+                    </div>    
                 <div class="card-body">
                     <p>необходимые продукты</p>
                     <?php $__currentLoopData = $postproducts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $postproduct): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -67,7 +64,7 @@
                         <a href ="<?php echo e(route('post.show', $post['id'])); ?> " style ="color:#63c34e">подробнее...</a>
                         <?php endif; ?>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            </div>
+                </div>
         </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             
@@ -76,11 +73,11 @@
     <h1 class="title">Топ <span>рецептов</span></h1>
             <div class="m-1">
                 <?php $__currentLoopData = $likedPosts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="card m-3">
-                    <div class="card-header " style="background: #99eb917d">
+                    <div class="card mb-3">
+                        <div class="card-header " style="background: #99eb917d">
                    
-                        <div class="callout mb-1 w-90 d-flex justify-content-between">
-                            <div><a href ="<?php echo e(route('post.show', $post->id)); ?> "><h3 style="font-size:1.5em;color:#63c34e;"><?php echo e($post->title); ?></h3></a></div>
+                            <div class="callout mb-1 w-90 d-flex justify-content-between">
+                                <div><a href ="<?php echo e(route('post.show', $post->id)); ?> "><h3 style="font-size:1.5em;color:#63c34e;"><?php echo e($post->title); ?></h3></a></div>
                                 <div style="color:#63c34e;">
                                 <form action="<?php echo e(route('post.like.store', $post->id)); ?>" method="POST">
                                     <?php echo csrf_field(); ?>
@@ -97,10 +94,10 @@
                                     </button>
                                 </form>
                                 </div>
-                        </div>
-                  
+                            </div>
+                        
                     </div>
-                <div class="card-body">
+                    <div class="card-body">
                     <p>необходимые продукты</p>
                     <?php $__currentLoopData = $postproducts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $postproduct): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <?php if($post->id ==$postproduct['post_id']): ?>
@@ -125,21 +122,19 @@
                         <a href ="<?php echo e(route('post.show', $post['id'])); ?> " style ="color:#63c34e">подробнее...</a>
                         <?php endif; ?>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </div>
             </div>
-        </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             
         </div>
-            <h1 class="title">Каталог <span>рецептов</span></h1>
-                <h3>Всего рецептов: <?php echo e($posts->total()); ?></h3>
-            
-
-        <div class="ml-5">
+        <h1 class="title">Каталог <span>рецептов</span></h1>
+            <h3>Всего рецептов: <?php echo e($posts->total()); ?></h3>
+            <div class="m-1">
             <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <div class="card">
+                <div class="card mb-3">
                 <div class="card-header " style="background: #99eb917d">
-                   
-                        <div class="callout mb-1 w-90 d-flex justify-content-between">
+                    <div class="callout mb-1 w-90 d-flex justify-content-between">
+                        
                             <div><a href ="<?php echo e(route('post.show', $post->id)); ?> "><h3 class="fw-light text-muted"><?php echo e($post->title); ?></h3></a></div>
                             <div style="color:#63c34e;">
                                 <form action="<?php echo e(route('post.like.store', $post->id)); ?>" method="POST">

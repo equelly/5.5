@@ -7,20 +7,19 @@
    <br>
    <br>
    <br>
-        <div class="ml-4 pl-4">
-            <div id = "searchpost" class="container mt-10">
-                <searchpost-component></searchpost-component>
-            </div>
+        <h1 class="m-3">Поиск рецепта в каталоге</h1>
+        <div id="searchpost" style="margin: auto; max-width:75%">
+            <searchpost-component></searchpost-component>
+        </div>
+        </div>
             @if(auth()->user() && (auth()->user()->role=='user'|| auth()->user()->role=='admin'))
     
     
             <h1 class="title">Любимые <span>рецепты({{$userLikedPost->count()}})</span></h1>
             <div class="ml-5">
                 @foreach($userLikedPost as $post)
-               
-                    <div class="card">
+                <div class="card">
                     <div class="card-header " style="background: #99eb917d">
-                   
                         <div class="callout mb-1 w-90 d-flex justify-content-between">
                             <div><a href ="{{route('post.show', $post->id)}} "><h3 class="fw-light text-muted">{{$post->title}}</h3></a></div>
                             <div  style="color:#63c34e;">
@@ -39,10 +38,8 @@
                                     </button>
                                 </form>
                             </div>
-                            </div>
                         </div>
-                  
-                    
+                    </div>    
                 <div class="card-body">
                     <p>необходимые продукты</p>
                     @foreach($postproducts as $postproduct)
@@ -68,7 +65,7 @@
                         <a href ="{{route('post.show', $post['id'])}} " style ="color:#63c34e">подробнее...</a>
                         @endif
                     @endforeach
-            </div>
+                </div>
         </div>
         @endforeach
             
@@ -77,11 +74,11 @@
     <h1 class="title">Топ <span>рецептов</span></h1>
             <div class="m-1">
                 @foreach($likedPosts as $post)
-                    <div class="card m-3">
-                    <div class="card-header " style="background: #99eb917d">
+                    <div class="card mb-3">
+                        <div class="card-header " style="background: #99eb917d">
                    
-                        <div class="callout mb-1 w-90 d-flex justify-content-between">
-                            <div><a href ="{{route('post.show', $post->id)}} "><h3 style="font-size:1.5em;color:#63c34e;">{{$post->title}}</h3></a></div>
+                            <div class="callout mb-1 w-90 d-flex justify-content-between">
+                                <div><a href ="{{route('post.show', $post->id)}} "><h3 style="font-size:1.5em;color:#63c34e;">{{$post->title}}</h3></a></div>
                                 <div style="color:#63c34e;">
                                 <form action="{{route('post.like.store', $post->id)}}" method="POST">
                                     @csrf
@@ -98,10 +95,10 @@
                                     </button>
                                 </form>
                                 </div>
-                        </div>
-                  
+                            </div>
+                        
                     </div>
-                <div class="card-body">
+                    <div class="card-body">
                     <p>необходимые продукты</p>
                     @foreach($postproducts as $postproduct)
                         @if($post->id ==$postproduct['post_id'])
@@ -126,21 +123,19 @@
                         <a href ="{{route('post.show', $post['id'])}} " style ="color:#63c34e">подробнее...</a>
                         @endif
                     @endforeach
+                </div>
             </div>
-        </div>
         @endforeach
             
         </div>
-            <h1 class="title">Каталог <span>рецептов</span></h1>
-                <h3>Всего рецептов: {{$posts->total()}}</h3>
-            
-
-        <div class="ml-5">
+        <h1 class="title">Каталог <span>рецептов</span></h1>
+            <h3>Всего рецептов: {{$posts->total()}}</h3>
+            <div class="m-1">
             @foreach($posts as $post)
-            <div class="card">
+                <div class="card mb-3">
                 <div class="card-header " style="background: #99eb917d">
-                   
-                        <div class="callout mb-1 w-90 d-flex justify-content-between">
+                    <div class="callout mb-1 w-90 d-flex justify-content-between">
+                        
                             <div><a href ="{{route('post.show', $post->id)}} "><h3 class="fw-light text-muted">{{$post->title}}</h3></a></div>
                             <div style="color:#63c34e;">
                                 <form action="{{route('post.like.store', $post->id)}}" method="POST">

@@ -1,15 +1,13 @@
 <template> 
 
-<div class="dropdown">
+<div class="dropdown w-100">
   <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
          
-          <input style="font-size: 18px;border-color: green;" @keyup="showHint(this.val.toLowerCase())" v-model="val" class="form-control" type="search" placeholder="поиск рецепта" aria-label="Search">
-          <div class="input-group-append">
-                        
-          </div>
+          <input style="font-size: 18px;border-color: green;" @input="showHint(this.val.toLowerCase())" v-model="val" class="form-control w-100" type="search" placeholder="поиск рецепта" aria-label="Search">
+
         </div>
-        <div id="myDropdown" class="dropdown-content">
+        <div id="myDropdown" class="dropdown d-flex justify-center">
         <div id="parentHint"></div>
        
         </div>
@@ -33,14 +31,27 @@
           showHint(str) {
             //сначала удалим подсказки от предыдущих запросов
 	          document.querySelector('#parentHint').innerHTML = '';
+            // ...и класс
+            document.querySelector('#parentHint').className = '';
+            
               if (str.length == 0) {
-                documentquerySelector('#parentHint').innerHTML = "";
+                
+                
+                document.querySelector('#parentHint').innerHTML = "в поле поиска ничего нет...";
+                document.querySelector('#parentHint').className = 'text-red-500 animate-pulse p-3';
                 return;
             } else {
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                       let jsonHints = JSON.parse(this.responseText);
+                      console.log(jsonHints);
+                      //если не найдено соответствий в базе данных выводим сообщение
+                      if(jsonHints.length== 0 && str != ''){
+                          document.querySelector('#parentHint').innerHTML = "Ничего не найдено";
+                          document.querySelector('#parentHint').className = 'text-red-500 animate-pulse p-3';
+                          return;
+                        };
                       jsonHints = jsonHints.slice(0,10);
                       let parentHint = document.querySelector('#parentHint');  
                       
@@ -48,7 +59,7 @@
                         for (let i = 0; i < jsonHints.length; i++) { 
                           r = document.createElement('a');
                             r.value = "добавить";
-                            r.className = "button hint p-3";
+                            r.className = "button hint pb-2 mt-3";
                             r.type = "submit";
                             r.name = "action";
                             r.id = jsonHints[i].id;

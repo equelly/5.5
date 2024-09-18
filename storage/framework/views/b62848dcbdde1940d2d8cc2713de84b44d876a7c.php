@@ -170,7 +170,7 @@ unset($__errorArgs, $__bag); ?>
         <div id="searchproduct" style="margin: auto; max-width:75%">
             <searchproduct-component></searchproduct-component>
         </div>
-     <h3> 
+     
       <?php if(isset($productsCart)): ?>
       
       <h1 class="title">Количество продуктов<span><?php echo e(count($productsCart)); ?></span> </h1>
@@ -292,7 +292,7 @@ unset($__errorArgs, $__bag); ?>
     </div>
   </section>
 
-  <div class="d-flex justify-content-center mb-5 ">
+  <div class="d-flex justify-content-center m-3">
     <div class="text-success"><?php echo e($sorted->links()); ?></div>
   </div>
   <?php $__env->stopSection(); ?>

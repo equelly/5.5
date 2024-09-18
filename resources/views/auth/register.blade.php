@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
+        <div class="col-md-9">
+            <div class="card enter">
                 <div class="card-header">{{ __('Регистрация') }}</div>
 
                 <div class="card-body">
@@ -14,7 +14,7 @@
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Имя') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autofocus>
 
                                 @error('name')
@@ -28,7 +28,7 @@
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email адрес') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
@@ -42,7 +42,7 @@
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Пароль') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col">
                                 <input id="password" type="password" class="mb-3 form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
@@ -51,7 +51,7 @@
                                     </span>
                                 @enderror
                                 <div class="remember callout d-flex justify-content-end mt-2">
-                                    <input type="checkbox" id="show" onclick="document.getElementById('password').type == 'password' ? document.getElementById('password').type = 'text' : document.getElementById('password').type ='password';">
+                                    <input type="checkbox" id="show" class="accent-green-600" onclick="document.getElementById('password').type == 'password' ? document.getElementById('password').type = 'text' : document.getElementById('password').type ='password';">
                                     <label for="show" id="check">показать пароль</label>
                                 </div>
 
@@ -63,10 +63,10 @@
                         <div class="row mb-3">
                         <label for="password-confirm" class="col-md-4 col-form-label text-md-end mt-2">{{ __('Подтвердить пароль') }}</label>
 
-                            <div class="col-md-6 mt-3">
+                            <div class="col mt-3">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                 <div class="remember  callout d-flex justify-content-end">
-                                    <input type="checkbox" id="confirm" onclick="document.getElementById('password-confirm').type == 'password' ? document.getElementById('password-confirm').type = 'text' : document.getElementById('password-confirm').type ='password';">
+                                    <input type="checkbox" id="confirm" class="accent-green-600" onclick="document.getElementById('password-confirm').type == 'password' ? document.getElementById('password-confirm').type = 'text' : document.getElementById('password-confirm').type ='password';">
                                     <label for="confirm" id="check">показать пароль</label>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
                             
                         </div>
                         <div class="row">
-                            <div class="">
+                            <div class="mb-3">
                                 <button type="submit" class="btn w-100" style = "background: #63c34e">
                                     {{ __('Зарегистрироваться') }}
                                 </button>
