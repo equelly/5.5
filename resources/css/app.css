@@ -20,7 +20,7 @@
 }
 
 html {
- 
+  font-size: 20px;
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
@@ -48,7 +48,7 @@ input[type='checkbox']:checked + label {
 
 .heading p {
   padding-top: 1rem;
-  font-size: 2rem;
+  font-size: 1.2rem;
   color: #666;
 }
 
@@ -186,7 +186,9 @@ a:hover {
 .header .navbar a:hover {
   color: #666;
 }
-
+.header .navbar a {
+  font-size: 26px;
+}
 .header .icons div {
   font-size: 2.5rem;
   margin-left: 1.7rem;
@@ -1094,7 +1096,7 @@ a:hover {
 }
 
 .footer .box-container .box a {
-  font-size: 1.4rem;
+  
   color: #666;
   padding: 1rem 0;
   display: block;
@@ -1140,7 +1142,11 @@ a:hover {
   }
   .header {
     padding: 2rem;
+    font-size: 14px;
   }
+  .header .navbar a {
+    font-size: 24px;
+}
   section {
     padding: 3rem 2rem;
   }

@@ -48,7 +48,7 @@
   <section class="home mt-1">
    
     @if (auth()->user() && auth()->user()->role == 'admin') 
-    <div  style="display: flex; flex-wrap: wrap; align-content: center; font-size: 2rem;" class="card m-4 w-75">
+    <div  style="display: flex; flex-wrap: wrap; align-content: center;" class="card m-4 w-75">
     <H1>добавление продукта в БД</H1>
     
     

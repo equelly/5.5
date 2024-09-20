@@ -25,7 +25,7 @@
 
 <a href="/" class="logo"><i class='fab fa-nutritionix'>5.5</i></a>
 
-<nav class="navbar ml-5 w-90 callout">
+<nav class="navbar ml callout d-flex justify-content-around">
 
   
     <a href="{{route('post.index')}}" class="nav-link">Рецепты</a>
@@ -180,12 +180,12 @@
   
     <div class="box">
         <h3>Ссылки</h3>
-        <a href="/" style= "font-size:1.6em"> <i class="fas fa-arrow-right"></i>на главную</a>
-        <a href="{{route('post.index')}}" style= "font-size:1.6em"> <i class="fas fa-arrow-right"></i>к рецептам</a>
+        <a href="/"> <i class="fas fa-arrow-right"></i>на главную</a>
+        <a href="{{route('post.index')}}"> <i class="fas fa-arrow-right"></i>к рецептам</a>
         @can('view', auth()->user())
-        <a href="{{route('post.myrecipe')}}" style= "font-size:1.6em"> <i class="fas fa-arrow-right"></i>мои рецепты</a>
+        <a href="{{route('post.myrecipe')}}"> <i class="fas fa-arrow-right"></i>мои рецепты</a>
         @endcan
-        <a href="{{route('product.index')}}" style= "font-size:1.6em"> <i class="fas fa-arrow-right"></i>к каталогу продуктов</a>
+        <a href="{{route('product.index')}}"> <i class="fas fa-arrow-right"></i>к каталогу продуктов</a>
         
     </div>
 
