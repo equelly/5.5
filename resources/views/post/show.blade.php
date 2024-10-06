@@ -60,16 +60,16 @@
                 @if((auth()->user() && auth()->user()->role == 'admin') || (auth()->user() && auth()->user()->id == $post->user_id))
       
      
-                <div>
-                    <a href="{{route('post.edit', $post->id)}}" class="btn btn-success m-3 hover:bg-gray-500/50" style="width: 95%;"><p style="color:white">редактировать</p></a>
-                </div>
+                <div  class="flex justify-content-around">
+                    <a href="{{route('post.edit', $post->id)}}" class="btn btn-success m-3 w-25 hover:bg-gray-500/50"><p style="color:white">редактировать</p></a>
                 
-                <div>
+                
+                
                     <!--оборачиваем в форму т.к. в html нет метода delete -->
-                    <form action="{{route('post.delete', $post->id)}}" method="POST">
+                    <form action="{{route('post.delete', $post->id)}}" method="POST" class="w-25 m-3">
                         @csrf
                         @method('delete')
-                        <input type="submit" value = "удалить!" class="btn btn-primary m-3 hover:bg-gray-500/50" style="width: 95%;">
+                        <button type="submit" class="btn btn-primary hover:bg-gray-500/50 w-100">удалить</button>
                     </form>
                     
                 </div>

@@ -332,6 +332,7 @@ a:hover {
 }
 .enter{
   max-width: 95%;
+  font-size: 2rem;
 }
 .card-category {
   position: -webkit-sticky; /* Safari */

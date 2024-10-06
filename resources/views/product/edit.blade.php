@@ -52,7 +52,7 @@
     <H1>редактирование продукта</H1>
     
     <div>
-    <form action ="{{route('product.update', $product->id)}}" method = "post">
+    <form action ="{{route('product.update', $product->id)}}" method = "POST">
     <!-- токен для безопасной передачи данных всеми методами кроме get-->    
     @csrf
     <!--токен для редактирования, т.к. в html нет метода put/patch -->

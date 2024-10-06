@@ -12,30 +12,47 @@
             
    </span>  <a href="{{route('product.index')}}" class="btn">К каталогу</a></h1>
    
-   @foreach($myrecipes as $recipe)
-   <div class="card m-4 w-75">
-                <div class="card-header" style="background: #99eb917d">
+   @foreach($myrecipes as $post)
+    <div class="m-3">
+        <div class="card d-flex justify-content-between">
+            <div class="card-header" style="background: #99eb917d">
 
-                    <div class="callout mb-1 w-90">
-                        <h3 class="fw-light text-muted">{{$recipe->title}}</h3>
+                <div class="callout mb-1 w-90">
+                        <h3 class="fw-light text-muted">{{$post->title}}</h3>
                     </div>
                 </div>
                
                 
                     <div class="m-4">
-                        <p class="text-muted">содержит в 100 граммах: {{$recipe->carb}}углеводов/{{$recipe->prot}}белков/{{$recipe->fat}}жиров</p>
+                        <p class="text-muted">содержит в 100 граммах:
+                            <div class="d-flex justify-content-between">
+                            <div>углеводов</div><div>{{$post->carb}}гр.</div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                            <div>белков</div><div>{{$post->prot}}гр.</div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                            <div>жиров</div><div>{{$post->fat}}гр.</div>
+                            </div>
                         <p class="text-muted">гикемический индекс: </p>
+                        @foreach($cut_posts as $cut_post)
+                        
+                        @if($post->id == $cut_post['id'])
+                        <p class="text-muted">Способ приготовления: {{$cut_post['content']}}</p>
+                        <a href ="{{route('post.show', $post->id)}} " style ="color:#63c34e">подробнее...</a>
+                        @endif
+                    @endforeach
                         <p class="text-muted">note: </p>
                     </div>
                 <hr>
                    
                     @if (auth()->user() && auth()->user()->role == 'admin')
                         <div>
-                            <a href="{{route('product.edit', $recipe->id)}}" class="btn btn-primary m-3">редактировать</a>
+                            <a href="{{route('post.edit', $post->id)}}" class="btn btn-primary m-3">редактировать</a>
                         </div>
                         <div>
                             <!--оборачиваем в форму т.к. в html нет метода delete -->
-                            <form action="{{route('product.delete', $recipe->id)}}" method="POST">
+                            <form action="{{route('product.delete', $post->id)}}" method="POST">
                                 @csrf
                                 @method('delete')
                                 <input type="submit" value = "удалить!" class="btn btn-primary m-3">
@@ -43,6 +60,7 @@
                             
                         </div>
                     @endif
+            </div>
         </div>
 
     

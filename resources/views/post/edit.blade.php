@@ -6,61 +6,81 @@
 <h1 class="title"> Карточка <span>рецепта</span></h1>
   <H1>Редактировать рецепт:</H1>
     <div class="ml-5">
-      <div class="card m-4 w-75">
+      <div class="card enter">
         <div class="card-header" style="background: #99eb917d">
           <div class="callout mb-1 w-90">
-            <form action =  "{{route('post.update', $post->id)}}" method = "POST">
+            <form action = "{{route('post.update', $post->id)}}" method = "POST" class="flex justify-center" enctype="multipart/form-data">
               <!-- токен для безопасной передачи данных всеми методами кроме get-->    
               @csrf
               <!--токен для редактирования, т.к. в html нет метода put/patch -->
               @method('patch')
             <input type="text" name = "title" value ="{{old('title')}}" class="form-control w-75 m-4" style="font-size: 18px;" id="title" placeholder = '{{$post->title}}' >
+            @error('title')<br>
+              <p class="text-danger">{{$message}}</p>
+            @enderror
           </div>
         </div>
           <div class="card-body">
             <p>
               необходимые продукты
             </p>
+          
               @foreach($postproducts as $postproduct)
                 @if($post->id ==$postproduct['post_id'])
                   @foreach($products as $product)
                     @if($postproduct['product_id'] == $product->id )
-                      <a href ="{{route('product.show', $product->id)}} "> 
-                        <div class="btn btn-outline-primary m-2 p-1" style = "width: auto;font-size: 1.2rem">{{$product->name}}/{{$postproduct['massa']}}гр.</div>
-                      </a>
+                    <ul>   
+                      <li>
+                      <input class="form-check-input checked:bg-cyan-300 hover:border-green-300" type="checkbox" name = "products[]" value="{{$product->id}}" id="{{$product->id}}" checked> 
+                      <label class="form-check-label hover:font-cyan-300  hover:text-green-400" for="{{$product->id}}">-{{$product->name}}_____{{$postproduct['massa']}}гр.</label>
+                      </li>
+                    </ul>
+                      
                     @endif
                   @endforeach
                 @endif
               @endforeach
+              @error('products')
+                <p class="text-danger">{{$message}}</p>
+              @enderror
                 <p>содержание (в %-x):  {{$post->carb}} угл./ {{$post->prot}} белков/{{$post->fat}} жиров</p>
-                  <h3>хлебных ед. - 
-                    <input type="text" class="" style="width: 10rem; border-bottom: 2px solid #bdf5b0" placeholder = "{{$post->carbpercent}}">
-                  </h3> 
-                  <hr>
+                <p class="title enter">хлебных ед. - <span>{{$post->carbpercent}}</span></p>  
+               
                     <label for="content" class="form-label">Способ приготовления</label>
-                      <textarea rows="5" name = "content" class="form-control" 
-                      id="content" placeholder = '{{$post->content}}' style="font-size: 14px;" ></textarea>
+                      <textarea rows="5" name = "content" class="form-control enter" 
+                      id="content" placeholder = '{{$post->content}}'>{{old('content')}}</textarea>
                       @error('content')
-                    <p class="text-danger">{{$message}}</p>
-
-                  @enderror
+                      <p class="text-danger">{{$message}}</p>
+                      @enderror
+                  @if ($post->image !== NULL)
+                <p class="ml-3">фото </p>
+                    <div class="flex justify-content-center m-4">
+                       
+                        <img src="{{asset('storage/'.$post->image)}}" alt='нет фото...'>
+                    </div>
+                @endif
           </div>
-            <div>
-              <a href="{{route('post.index')}}" class="btn btn-primary m-3" style="width: 95%;">вернуться к рецептам</a>
+          @if((auth()->user() && auth()->user()->role == 'admin') || (auth()->user() && auth()->user()->id == $post->user_id))
+            <div class="grid justify-items-start">
+            <button type="submit" class="btn btn-primary m-3 w-25">обновить</button>
             </div>
+          </form>      
+  
+               
               @can('view', auth()->user())
-            <div>
-            <!--оборачиваем в форму т.к. в html нет метода delete -->
-              <form action="{{route('post.delete', $post->id)}}" method="post">
-                @csrf
-                  @method('delete')
-                    <input type="submit" value = "удалить!" class="btn btn-primary m-3" style="width: 95%;">
-              </form>
-                    
-            </div>
-                @endcan
+              <!--оборачиваем в форму т.к. в html нет метода delete -->
+                <form action="{{route('post.delete', $post->id)}}" method="POST" class="grid justify-items-end">
+                  @csrf
+                    @method('delete')
+                      <button type="submit" class="btn btn-primary m-3 w-25">удалить</button>
+                </form>
+              @endcan        
+            
+            </div>   
+          @endif
 
-        </form>
+    
+        
       </div>
     </div>
               

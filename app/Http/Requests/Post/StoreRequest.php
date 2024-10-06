@@ -22,12 +22,12 @@ class StoreRequest extends FormRequest
      * @return array<string, mixed>
      */
     public function rules()
-    {
+    { 
         return [
-            'title'=>'required|string',
+            'title'=>'required|string|max:250|min:2',
             'content'=>'required|string',
             'image'=>'required|string',
-            'products'=>'',
+            'products'=>'required|array|min:2',
         ];
     }
 }

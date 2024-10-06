@@ -59,7 +59,7 @@
                         for (let i = 0; i < jsonHints.length; i++) { 
                           r = document.createElement('a');
                             r.value = "добавить";
-                            r.className = "button hint pb-2 mt-3";
+                            r.className = "button hint mt-3 z-40";
                             r.type = "submit";
                             r.name = "action";
                             r.id = jsonHints[i].id;

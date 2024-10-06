@@ -238,7 +238,12 @@ class FormRequest extends Request implements ValidatesWhenResolved
      */
     public function attributes()
     {
-        return [];
+        return [
+            'email' => 'email адрес',
+            'array' => 'массив данных',
+            'title' => 'название рецепта',
+            'products' => 'Что можно приготовить из одного продукта? В рецепте должно быть минимум ',
+        ];
     }
 
     /**

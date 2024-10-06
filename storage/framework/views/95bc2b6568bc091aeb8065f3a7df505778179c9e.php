@@ -11,7 +11,7 @@
             <searchpost-component></searchpost-component>
         </div>
         </div>
-            <?php if(auth()->user() && (auth()->user()->role=='user'|| auth()->user()->role=='admin')): ?>
+            <?php if(auth()->user() && (auth()->user()->role=='user'|| auth()->user()->role=='admin') && $userLikedPost->count() != 0): ?>
     
     
             <h1 class="title">Любимые <span>рецепты(<?php echo e($userLikedPost->count()); ?>)</span></h1>

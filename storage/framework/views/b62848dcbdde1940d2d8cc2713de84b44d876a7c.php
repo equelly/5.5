@@ -47,7 +47,7 @@
   <section class="home mt-1">
    
     <?php if(auth()->user() && auth()->user()->role == 'admin'): ?> 
-    <div  style="display: flex; flex-wrap: wrap; align-content: center; font-size: 2rem;" class="card m-4 w-75">
+    <div  style="display: flex; flex-wrap: wrap; align-content: center;" class="card m-4 w-75">
     <H1>добавление продукта в БД</H1>
     
     
@@ -170,7 +170,7 @@ unset($__errorArgs, $__bag); ?>
         <div id="searchproduct" style="margin: auto; max-width:75%">
             <searchproduct-component></searchproduct-component>
         </div>
-     
+    
       <?php if(isset($productsCart)): ?>
       
       <h1 class="title">Количество продуктов<span><?php echo e(count($productsCart)); ?></span> </h1>

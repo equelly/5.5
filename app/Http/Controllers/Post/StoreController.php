@@ -12,7 +12,7 @@ class StoreController extends BaseController
 {
    public function __invoke(StoreRequest $request)
    {  
-    //dd(1111111111);
+    
     //Request
         $data = $request->validated();
         

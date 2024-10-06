@@ -128,7 +128,7 @@
         <div id="searchproduct" style="margin: auto; max-width:75%">
             <searchproduct-component></searchproduct-component>
         </div>
-     
+    
       @if(isset($productsCart))
       
       <h1 class="title">Количество продуктов<span>{{count($productsCart)}}</span> </h1>

@@ -12,7 +12,7 @@
             <searchpost-component></searchpost-component>
         </div>
         </div>
-            @if(auth()->user() && (auth()->user()->role=='user'|| auth()->user()->role=='admin'))
+            @if(auth()->user() && (auth()->user()->role=='user'|| auth()->user()->role=='admin') && $userLikedPost->count() != 0)
     
     
             <h1 class="title">Любимые <span>рецепты({{$userLikedPost->count()}})</span></h1>

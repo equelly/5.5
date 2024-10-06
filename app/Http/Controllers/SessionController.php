@@ -37,10 +37,7 @@ class SessionController extends Controller
            $_SESSION['cart'][$_POST['product_id']] = array($_POST['product_id']=>$_POST['massa']);
            //$_SESSION['cart'][] = $_POST['product_id'];
            //dd($_SESSION['cart']);
-           
-
-         
-          //dd($sessionCart);
+     
          //создаем массив для хранения выбранных продуктов 
          $productsCart = array();
          //и переменные в которых будем хранить сумму содержащихся углеводов, белков, жиров, ХЕ
@@ -54,7 +51,7 @@ class SessionController extends Controller
          $totalMassa = [];
          
          
-         //dd($sessionCart);
+         //dd($_SESSION);
          foreach ($_SESSION['cart'] as $id)
             {
                foreach ($id as $k=>$v)
@@ -81,7 +78,7 @@ class SessionController extends Controller
            
            // $sessionCart =  array_unique($_SESSION['cart']);
           
-                           //dd($sumMass);
+                           //dd($productsCart);
                            $carbpercent = round($totalXE/$sumMass*100, 2);
             return view('product.index', compact('sorted', 'categories', 'products', 'productsCart', 'totalXE', 'totalCarb', 'totalProt', 'totalFat', 'totalMassa', 'carbpercent', 'sumMass'));
         

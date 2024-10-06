@@ -3,7 +3,8 @@
 namespace App\Services\Post;
 
 use App\Models\Post;
-
+use App\Models\PostProduct;
+use Illuminate\Support\Facades\DB;
 
 class Service 
 {
@@ -36,13 +37,27 @@ public function store($data)
 
 public function update($post, $data)
 {
-    //применяем тот же подход что и  для создания
-    //dd($data);
-    $products = $data['products'];
-    unset($data['products']);
-    $post->update($data);
-    //только метод attach заменим sync
-    $post->product()->sync($products);
+      //dd($post);
+      // удалим старые записи из БД 
+      DB::table('post_products')->where('post_id', '=', $post->id)->delete();
+      
+      if(isset($data['products']) && count($data['products']) != null){
+    // dd($data['products']);
+      $products = $data['products'];
+        //a из массива $data удалим
+          unset($data['products']);  
+          foreach($products as $product){
+            PostProduct::firstOrCreate([
+            'post_id'=>$post->id,
+            'product_id'=>$product,
+    
+            ]);
+          }
+        }
+        $post->update($data);
+          
+    
+        return redirect()->route('post.index');
 }
 public function mydata(){
   return  "done";
