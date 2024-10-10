@@ -7,10 +7,10 @@
           <input style="font-size: 18px;border-color: green;" @input="showHint(this.val.toLowerCase())" v-model="val" class="form-control w-100" type="search" placeholder="поиск рецепта" aria-label="Search">
 
         </div>
-        <div id="myDropdown" class="dropdown d-flex justify-center">
-        <div id="parentHint"></div>
+        
+        <div id="parentHint" class="dropdown d-flex justify-center"></div>
        
-        </div>
+        
   </div>
 </div>
 </template>
@@ -59,7 +59,7 @@
                         for (let i = 0; i < jsonHints.length; i++) { 
                           r = document.createElement('a');
                             r.value = "добавить";
-                            r.className = "button hint mt-3 z-40";
+                            r.className = "button hint mt-3 w-100";
                             r.type = "submit";
                             r.name = "action";
                             r.id = jsonHints[i].id;

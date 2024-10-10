@@ -27,7 +27,8 @@ class UpdateRequest extends FormRequest
          'title'=>'required|string|max:250|min:2',
          'content'=>'required|string',
          'image'=>'string',
-         'products'=>'required|array',
+         'products'=>'',
+         'massa'=>'required|array',
         ];
     }
 }

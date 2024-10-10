@@ -22,7 +22,7 @@
         </div>
           <div class="card-body">
             <p>
-              необходимые продукты
+              Состав (необходимые продукты)
             </p>
           
               @foreach($postproducts as $postproduct)
@@ -31,8 +31,9 @@
                     @if($postproduct['product_id'] == $product->id )
                     <ul>   
                       <li>
-                      <input class="form-check-input checked:bg-cyan-300 hover:border-green-300" type="checkbox" name = "products[]" value="{{$product->id}}" id="{{$product->id}}" checked> 
-                      <label class="form-check-label hover:font-cyan-300  hover:text-green-400" for="{{$product->id}}">-{{$product->name}}_____{{$postproduct['massa']}}гр.</label>
+                      <input class="form-check-input checked:bg-cyan-300 hover:border-green-300" type="checkbox" name = "products[{{$product->id}}]" value="{{$product->id}}" id="{{$product->id}}" checked>
+                      
+                      <label class="form-check-label hover:font-cyan-300  hover:text-green-400" for="{{$product->id}}">-{{$product->name}}_____<input type="text" class="w-25" name="massa[{{$product->id}}][]" placeholder="кол-во">гр.</label>
                       </li>
                     </ul>
                       

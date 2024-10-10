@@ -215,7 +215,7 @@
             @csrf
             <H1>{{$product->name   }}  <span class="text-muted"> <br>масса-</span>
             
-                <input class = "w-25 ml-6" type="text" name = "massa" placeholder="грамм" autocomplete="off" required>
+                <input class = "w-25 ml-6" type="text" name = "massa" placeholder="...грамм" autocomplete="off" required>
             </H1> 
           </div>
           

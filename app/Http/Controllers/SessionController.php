@@ -22,7 +22,7 @@ class SessionController extends Controller
       $products = Product::all();
       $categories = Category::all();
 
-       //print_r($_POST);
+       
         session_start();
         if (!isset($_SESSION['cart']))
         {
