@@ -37,29 +37,32 @@ public function store($data)
 
 public function update($post, $session, $data)
 {
-      //dd($data);
+      
       // удалим старые записи из БД 
       DB::table('post_products')->where('post_id', '=', $post->id)->delete();
       //при условии существованя массива  в переданных данных'products' и если он не пустой
-      if(isset($data['products']) && count($data['products']) != null){
+      if(isset($session) && count($session) != null){
      
-        $products = $data['products'];
+        
           //a из массива $data удалим для последующей его валидации 
             unset($data['products']);  
             //переберем два массива первый с id выбранных продуктов второй с их массами
-            foreach($products as $id){
-              foreach($session as $k=>$v){
-                foreach($v as $product_id=>$massa){
-                // обновляем старые записи из таблицы post_products в БД с условием что поле в колонке product_id = id-переданного продукта
-                DB::table('post_products')->where('product_id', '=', $product_id)->update(['massa' => $massa]);
+            
+              
+              foreach($session as $product_id=>$val){
+               
+                foreach($val as $k=>$massa){
+                
                 //затем заново создаем поля с id рецепта и id продуктов
                 PostProduct::firstOrCreate([
                 'post_id'=>$post->id,
-                'product_id'=>$id
+                'product_id'=>$product_id
                 ]);
+                // обновляем старые записи из таблицы post_products в БД с условием что поле в колонке product_id = id-переданного продукта
+                DB::table('post_products')->where('product_id', '=', $product_id)->update(['massa' => $massa]);
                 }
               }
-            }
+            
                
       }
         $post->update($data);

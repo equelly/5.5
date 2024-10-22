@@ -38,7 +38,7 @@
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         <?php endif; ?>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    <p>содержание (в %-x):  <?php echo e($post->carb); ?> угл./ <?php echo e($post->prot); ?> белков/<?php echo e($post->fat); ?> жиров</p>
+                    <p>Содержание в 100гр. :  <?php echo e($post->carb); ?> угл./ <?php echo e($post->prot); ?> белков/<?php echo e($post->fat); ?> жиров</p>
                <h3>хлебных ед. - 
                <input type="text" class="" style="width: 10rem; border-bottom: 2px solid #bdf5b0" placeholder = "<?php echo e($post->carbpercent); ?>">
                 

@@ -39,7 +39,7 @@
                             @endforeach
                         @endif
                     @endforeach
-                    <p>содержание (в %-x):  {{$post->carb}} угл./ {{$post->prot}} белков/{{$post->fat}} жиров</p>
+                    <p>Содержание в 100гр. :  {{$post->carb}} угл./ {{$post->prot}} белков/{{$post->fat}} жиров</p>
                <h3>хлебных ед. - 
                <input type="text" class="" style="width: 10rem; border-bottom: 2px solid #bdf5b0" placeholder = "{{$post->carbpercent}}">
                 

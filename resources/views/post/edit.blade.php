@@ -14,7 +14,7 @@
               @csrf
               <!--токен для редактирования, т.к. в html нет метода put/patch -->
               @method('patch')
-            <input type="text" name = "title" value ="{{old('title')}}" class="form-control w-75 m-4" style="font-size: 18px;" id="title" placeholder = '{{$post->title}}' >
+            <input type="text" name = "title" value ="{{old('title') != null ? old('title'): $post->title}}" class="form-control w-75 m-4" style="font-size: 18px;" id="title" placeholder = '{{$post->title}}' >
             @error('title')<br>
               <p class="text-danger">{{$message}}</p>
             @enderror
@@ -33,7 +33,9 @@
                       <li>
                       <input class="form-check-input checked:bg-cyan-300 hover:border-green-300" type="checkbox" name = "products[{{$product->id}}]" value="{{$product->id}}" id="{{$product->id}}" checked>
                       
-                      <label class="form-check-label hover:font-cyan-300  hover:text-green-400" for="{{$product->id}}">-{{$product->name}}_____<input type="text" class="w-25" name="massa[{{$product->id}}][]" placeholder="кол-во">гр.</label>
+                      <label class="form-check-label hover:font-cyan-300  hover:text-green-400" for="{{$product->id}}">-{{$product->name}}_____
+                      
+                        <input type="text" class="w-25" name="massa[{{$product->id}}][]" value ="{{old('massa[$product->id]') != null ? old('massa[$product->id]'): $postproduct->massa}}">гр.</label>
                       </li>
                     </ul>
                       
@@ -49,7 +51,7 @@
                
                     <label for="content" class="form-label">Способ приготовления</label>
                       <textarea rows="5" name = "content" class="form-control enter" 
-                      id="content" placeholder = '{{$post->content}}'>{{old('content')}}</textarea>
+                      id="content" placeholder = '{{$post->content}}'>{{old('content') != null ? old('titlcontent'): $post->content}}</textarea>
                       @error('content')
                       <p class="text-danger">{{$message}}</p>
                       @enderror

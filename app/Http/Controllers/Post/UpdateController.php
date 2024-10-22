@@ -15,18 +15,23 @@ class UpdateController extends BaseController
    public function __invoke(UpdateRequest $request, Post $post)
    {
       $products = Product::all();
-      //dd($_POST);
+      //dd($request);
       //создаем массив для хранения id продуктов и их масс..
       $session= array();
       //перебираем массив продуктов выбранных и полученных в результате запроса в переменной $request
       foreach($request->massa as $k=>$key){
          
+         foreach($request->products as $id=>$product_id){
+            if($k == $id){
+       // в этом массиве содержаться id-продуктов как ключи со значениями массивами их масс переберем и их
          foreach($key as $m){
-      //..и добавляем в массив для хранения id продуктов и их масс    
-            $session[$k]= array($k=>$m);
+      //..и добавляем в массив для хранения id продуктов и их масс 
+            $session[$k]= array('massa'=>$m);
          }
-         
+      }
+      }
       };
+      
       //создаем массив для хранения выбранных продуктов 
       $productsCart = array();
       //и переменные в которых будем хранить сумму содержащихся углеводов, белков, жиров, ХЕ
@@ -40,15 +45,18 @@ class UpdateController extends BaseController
       $totalMassa = [];
       
       
-      //dd($_SESSION);
-      foreach ($session as $id)
+      //dd($session);
+      foreach ($session as $id=>$val)
          {
-            foreach ($id as $k=>$v)
+            //dd($session);
+            foreach ($val as $k=>$v)
             {
+               
                foreach ($products as $product)
                {
-                  if ($product['id'] == $k)
+                  if ($product['id'] == $id)
                      {	
+                        
                         $productsCart[] = $product;
                         $totalXE += round($product['carb']/100*$v/12*$product['G'], 2);
                         $totalCarb += $product['carb']/100*$v;
@@ -68,6 +76,9 @@ class UpdateController extends BaseController
         
                        
                         $carbpercent = round($totalXE/$sumMass*100, 2);
+                        $totalCarb = round($totalCarb/$sumMass*100, 2);
+                        $totalProt = round($totalProt/$sumMass*100, 2);
+                        $totalFat = round($totalFat/$sumMass*100, 2);
                      
         //dd($request);
              $data = request()->validate([
@@ -77,10 +88,8 @@ class UpdateController extends BaseController
                'products'=>'',
                'user_id'=>'',
                'image'=>''
-                        ])           ;
-        // обновляем старые записи из таблицы posts в БД с условием что поле в колонке id = id-переданного рецепта
-       // DB::table('posts')->where('id', '=', $post->id)->update(['fat' => '1000']);
-     //dd($data);
+                        ]);
+        
      $data['carb'] = $totalCarb;
      $data['prot'] = $totalProt;
      $data['fat'] = $totalFat;
