@@ -78,21 +78,31 @@
                         <div class="card-header " style="background: #99eb917d">
                    
                             <div class="callout mb-1 w-90 d-flex justify-content-between">
-                                <div><a href ="{{route('post.show', $post->id)}} "><h3 style="font-size:1.5em;color:#63c34e;">{{$post->title}}</h3></a></div>
+                                <div><a href ="{{route('post.show', $post->id)}} "><h3>{{$post->title}}</h3></a></div>
                                 <div style="color:#63c34e;">
                                 <form action="{{route('post.like.store', $post->id)}}" method="POST">
                                     @csrf
-                                    <span>{{($post->liked_users_count) > 0 ? "понравилось_". $post->liked_users_count : ''}}</span>
-                                    <button type="submit" class="border-0 bg-transparent">
+                                    @if(($post->liked_users_count) > 0)
+                                    
+                                    <span class="text-nowrap">{{ $post->liked_users_count}}
                                     @auth()
-                                       
-                                        @if(auth()->user()->likedPosts->contains($post->id))
-                                        <i class="fas fa-heart" style="font-size:1.5em;color:#63c34e;"></i>
+                                    <button type="submit" class="border-0 bg-transparent">
+                                            @if(auth()->user()->likedPosts->contains($post->id))
+                                            <i class="fas fa-heart" style="font-size:1.5em;color:#63c34e;"></i>
+                                            @else
+                                            <i class="far fa-heart" style="font-size:1.5em;color:#63c34e;"></i>
+                                            @endif
+                                    </button>        
                                         @else
-                                        <i class="far fa-heart" style="font-size:1.5em;color:#63c34e;"></i>
-                                        @endif
-                                    @endauth
+                                    <button>
+                                        <a href="/home" class="far fa-heart" style="font-size:1.5em;color:#63c34e;"></a>
                                     </button>
+                                    @endauth
+                                    </span>
+                                    @endif
+                                    
+                                    
+                                    
                                 </form>
                                 </div>
                             </div>

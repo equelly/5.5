@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Войти >>>') }}</div>
+                <div class="card-header">Учетные данные для входа</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -57,6 +57,7 @@
                                     {{ __('Войти') }}
                                 </button>
                             </div>
+                            <p>Для работы с приложением необходимо <a href="http://localhost:8000/register">зарегистрироваться</a></p>
                                 @if (Route::has('password.request'))
                                     <a class="mt-3" href="{{ route('password.request') }}">
                                         {{ __('Если забыли пароль?') }}

@@ -77,21 +77,32 @@
                         <div class="card-header " style="background: #99eb917d">
                    
                             <div class="callout mb-1 w-90 d-flex justify-content-between">
-                                <div><a href ="<?php echo e(route('post.show', $post->id)); ?> "><h3 style="font-size:1.5em;color:#63c34e;"><?php echo e($post->title); ?></h3></a></div>
+                                <div><a href ="<?php echo e(route('post.show', $post->id)); ?> "><h3><?php echo e($post->title); ?></h3></a></div>
                                 <div style="color:#63c34e;">
                                 <form action="<?php echo e(route('post.like.store', $post->id)); ?>" method="POST">
                                     <?php echo csrf_field(); ?>
-                                    <span><?php echo e(($post->liked_users_count) > 0 ? "понравилось_". $post->liked_users_count : ''); ?></span>
-                                    <button type="submit" class="border-0 bg-transparent">
+                                    <?php if(($post->liked_users_count) > 0): ?>
+                                    
+                                    <span class="text-nowrap"><?php echo e($post->liked_users_count); ?>
+
                                     <?php if(auth()->guard()->check()): ?>
-                                       
-                                        <?php if(auth()->user()->likedPosts->contains($post->id)): ?>
-                                        <i class="fas fa-heart" style="font-size:1.5em;color:#63c34e;"></i>
+                                    <button type="submit" class="border-0 bg-transparent">
+                                            <?php if(auth()->user()->likedPosts->contains($post->id)): ?>
+                                            <i class="fas fa-heart" style="font-size:1.5em;color:#63c34e;"></i>
+                                            <?php else: ?>
+                                            <i class="far fa-heart" style="font-size:1.5em;color:#63c34e;"></i>
+                                            <?php endif; ?>
+                                    </button>        
                                         <?php else: ?>
-                                        <i class="far fa-heart" style="font-size:1.5em;color:#63c34e;"></i>
-                                        <?php endif; ?>
-                                    <?php endif; ?>
+                                    <button>
+                                        <a href="/home" class="far fa-heart" style="font-size:1.5em;color:#63c34e;"></a>
                                     </button>
+                                    <?php endif; ?>
+                                    </span>
+                                    <?php endif; ?>
+                                    
+                                    
+                                    
                                 </form>
                                 </div>
                             </div>
