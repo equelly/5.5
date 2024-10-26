@@ -74,8 +74,8 @@
 	   <div class="dropdown">
         <input type="search" oninput="showHint(this.value.toLowerCase())" placeholder="найти..." id="search-box" value="">
           <label for="search-box" >
-          <div id="myDropdown" class="dropdown-content">
-              <div id="productHint" class="search-hint"></div>
+          <div id="myDropdown" class="dropdown-content w-100">
+              <div id="productHint" class="search-hint mt-2"></div>
           </div>
         </label>
 		  </div>

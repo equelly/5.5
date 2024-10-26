@@ -202,7 +202,7 @@ a:hover {
 
 .header .search-form {
   position: absolute;
-  top: -160%;
+  top: -200%;
   right: 2rem;
   
   border-radius: .5rem;
@@ -224,12 +224,13 @@ a:hover {
 }
 
 .header .search-form input {
-  height: 100%;
+ 
   width: 100%;
   padding: 0 1.2rem;
   font-size: 1.6rem;
   color: #222;
   text-transform: none;
+  border: 2px solid rgb(47, 255, 0);
 }
 
 .header .search-form label {
@@ -1230,7 +1231,7 @@ a:hover {
 .hint {
     color: #63c34e;
     background-color: #99eb917d;
-    width: 36rem;
+    width: 100%;
     font-size: 18px;
     border-radius: 5px;
     text-align: center;
@@ -1270,7 +1271,7 @@ a:hover {
 }
   .dropdown-content {
     position: absolute;
-    top: 40px;
+    
     background-color: #f8fbfb;
     min-width: 150px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
