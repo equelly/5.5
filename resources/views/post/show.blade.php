@@ -46,7 +46,7 @@
                 </h3> 
                 
                     <hr>
-                <p class="text-muted">Способ приготовления: {{$post->content}}</p>
+                <p class="text-muted">Способ приготовления: </p>{{$post->content}}
                 </div>
                 @if ($post->image !== NULL)
                 <p class="ml-3">вот что получилось!</p>
@@ -77,28 +77,7 @@
             </div>
         
             <div  class="mt-5">
-            
-                
-            @if(auth()->user() && (auth()->user()->role=='user'|| auth()->user()->role=='admin'))              
-                <div>
-                <form action="{{route('post.comment.store', $post->id)}}" method="POST"> 
-                    @csrf
-                    <label for="content" class="form-label"><i class='far fa-edit' style='font-size:24px;color:#63c34e'></i>оставить комментарий</label>
-                    <textarea name = "message" class="form-control" rows="4" cols="50" style="font-size: 1.5rem;border-radius: 10px;
-    border: 2px solid #73AD21;"
-                    id="content" placeholder = "текст комментария..." required>{{old('content')}}</textarea>
-                    @error('content')
-                    <p class="text-danger">{{$message}}</p>
-
-                    @enderror
-                    <button type="submit" class="btn btn-primary m-4">добавить</button>
-                </form>    
-                </div>
-            @endif
-            </div>   
-        </div>  
-    </div>
-    <H1 class="title">Комментарии <span>({{$comments->count()}})</span></H1>
+                <H1 class="title">Комментарии <span>({{$comments->count()}})</span></H1>
     @foreach($comments as $comment)
     
         <div class="toast m-4" style="display:block; font-size:0.8em; width: 75%;  border-radius: 10px;
@@ -121,6 +100,27 @@
             </div>
         </div>
     @endforeach
+                
+            @if(auth()->user() && (auth()->user()->role=='user'|| auth()->user()->role=='admin'))              
+                <div>
+                <form action="{{route('post.comment.store', $post->id)}}" method="POST"> 
+                    @csrf
+                    <label for="content" class="form-label"><i class='far fa-edit' style='font-size:24px;color:#63c34e'></i>оставить комментарий</label>
+                    <textarea name = "message" class="form-control" rows="4" cols="50" style="font-size: 1.5rem;border-radius: 10px;
+    border: 2px solid #73AD21;"
+                    id="content" placeholder = "текст комментария..." required>{{old('content')}}</textarea>
+                    @error('content')
+                    <p class="text-danger">{{$message}}</p>
+
+                    @enderror
+                    <button type="submit" class="btn btn-primary m-4">добавить</button>
+                </form>    
+                </div>
+            @endif
+            </div>   
+        </div>  
+    </div>
+
        
 
     </section>

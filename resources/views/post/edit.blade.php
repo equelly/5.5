@@ -33,9 +33,9 @@
                       <li>
                       <input class="form-check-input checked:bg-cyan-300 hover:border-green-300" type="checkbox" name = "products[{{$product->id}}]" value="{{$product->id}}" id="{{$product->id}}" checked>
                       
-                      <label class="form-check-label hover:font-cyan-300  hover:text-green-400" for="{{$product->id}}">-{{$product->name}}_____
+                      <label class="form-check-label hover:font-cyan-300  hover:text-green-400" for="{{$product->id}}">-{{$product->name}}_</label>
                       
-                        <input type="text" class="w-25" name="massa[{{$product->id}}][]" value ="{{old('massa[$product->id]') != null ? old('massa[$product->id]'): $postproduct->massa}}">гр.</label>
+                        <input type="text" class="input_mass" name="massa[{{$product->id}}][]" value ="{{old('massa[$product->id]') != null ? old('massa[$product->id]'): $postproduct->massa}}">гр.
                       </li>
                     </ul>
                       

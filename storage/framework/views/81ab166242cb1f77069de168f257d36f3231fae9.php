@@ -45,7 +45,8 @@
                 </h3> 
                 
                     <hr>
-                <p class="text-muted">Способ приготовления: <?php echo e($post->content); ?></p>
+                <p class="text-muted">Способ приготовления: </p><?php echo e($post->content); ?>
+
                 </div>
                 <?php if($post->image !== NULL): ?>
                 <p class="ml-3">вот что получилось!</p>
@@ -76,7 +77,30 @@
             </div>
         
             <div  class="mt-5">
-            
+                <H1 class="title">Комментарии <span>(<?php echo e($comments->count()); ?>)</span></H1>
+    <?php $__currentLoopData = $comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    
+        <div class="toast m-4" style="display:block; font-size:0.8em; width: 75%;  border-radius: 10px;
+    border: 2px solid #73AD21;" false role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header" style="background-color: transparent;">
+              
+                <strong class="me-auto"><?php echo e($comment->name); ?> </strong>
+                <small class="text-body-secondary"><?php echo e($comment->created_at); ?></small>
+                <?php if(auth()->user() && (auth()->user()->name == $comment->name)): ?>
+                
+                <form action="<?php echo e(route('post.comment.delete', [$post->id, $comment->id])); ?>" method="POST"> 
+                    <?php echo csrf_field(); ?>
+                    <?php echo method_field('DELETE'); ?>
+                <button type="submit" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </form>
+                <?php endif; ?>
+            </div>
+            <div class="toast-body">
+            <?php echo e($comment->message); ?>
+
+            </div>
+        </div>
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 
             <?php if(auth()->user() && (auth()->user()->role=='user'|| auth()->user()->role=='admin')): ?>              
                 <div>
@@ -104,30 +128,7 @@ unset($__errorArgs, $__bag); ?>
             </div>   
         </div>  
     </div>
-    <H1 class="title">Комментарии <span>(<?php echo e($comments->count()); ?>)</span></H1>
-    <?php $__currentLoopData = $comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-    
-        <div class="toast m-4" style="display:block; font-size:0.8em; width: 75%;  border-radius: 10px;
-    border: 2px solid #73AD21;" false role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header" style="background-color: transparent;">
-              
-                <strong class="me-auto"><?php echo e($comment->name); ?> </strong>
-                <small class="text-body-secondary"><?php echo e($comment->created_at); ?></small>
-                <?php if(auth()->user() && (auth()->user()->name == $comment->name)): ?>
-                
-                <form action="<?php echo e(route('post.comment.delete', [$post->id, $comment->id])); ?>" method="POST"> 
-                    <?php echo csrf_field(); ?>
-                    <?php echo method_field('DELETE'); ?>
-                <button type="submit" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </form>
-                <?php endif; ?>
-            </div>
-            <div class="toast-body">
-            <?php echo e($comment->message); ?>
 
-            </div>
-        </div>
-    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
        
 
     </section>
